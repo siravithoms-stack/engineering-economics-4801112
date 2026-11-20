@@ -1,0 +1,3783 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปวิชาการวิเคราะห์ทางเศรษฐศาสตร์วิศวกรรม (Engineering Economic Analysis) ฉบับสมบูรณ์ พร้อมโจทย์และเฉลย</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Kanit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- MathJax 3 -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --navy-950: #081221;
+            --navy-900: #0B192C;
+            --navy-800: #13294B;
+            --navy-700: #1E3A6D;
+            --gold-500: #C8A24A;
+            --gold-400: #DFBE6F;
+            --gold-100: #FBF5E6;
+            --primary: #13294B;
+            --primary-light: #2563EB;
+            --primary-dark: #0B192C;
+            --secondary: #0F766E;
+            --secondary-light: #14B8A6;
+            --accent: #C8A24A;
+            --danger: #DC2626;
+            --success: #059669;
+
+            --bg-main: #F5F7FA;
+            --bg-card: #FFFFFF;
+            --bg-subtle: #F8FAFC;
+            --bg-elevated: #FFFFFF;
+            --text-main: #1E293B;
+            --text-heading: #0B192C;
+            --text-muted: #64748B;
+            --border-color: rgba(15, 23, 42, 0.09);
+            --border-strong: rgba(15, 23, 42, 0.16);
+
+            --shadow-xs: 0 1px 2px rgba(11, 25, 44, 0.04);
+            --shadow-sm: 0 2px 8px rgba(11, 25, 44, 0.05), 0 1px 2px rgba(11, 25, 44, 0.03);
+            --shadow: 0 10px 28px -6px rgba(11, 25, 44, 0.08), 0 4px 10px -4px rgba(11, 25, 44, 0.04);
+            --shadow-lg: 0 20px 44px -12px rgba(11, 25, 44, 0.14);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 22px;
+            --font-scale: 1;
+        }
+
+        [data-theme="dark"] {
+            --primary: #93C5FD;
+            --primary-light: #60A5FA;
+            --primary-dark: #F1F5F9;
+            --secondary: #2DD4BF;
+            --secondary-light: #5EEAD4;
+            --accent: #E2C275;
+            --danger: #F87171;
+            --success: #34D399;
+
+            --bg-main: #0A101D;
+            --bg-card: #111A2C;
+            --bg-subtle: #162238;
+            --bg-elevated: #1A2842;
+            --text-main: #E2E8F0;
+            --text-heading: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: rgba(148, 163, 184, 0.15);
+            --border-strong: rgba(148, 163, 184, 0.28);
+
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.35);
+            --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+            --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.55);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: calc(16px * var(--font-scale));
+        }
+
+        body {
+            font-family: 'IBM Plex Sans Thai', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.82;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* Reading Progress Bar */
+        .reading-progress-track {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            z-index: 1200;
+            background: transparent;
+            pointer-events: none;
+        }
+
+        .reading-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold-500), var(--gold-400), #2DD4BF);
+            transition: width 0.08s linear;
+            box-shadow: 0 0 10px rgba(200, 162, 74, 0.55);
+        }
+
+        /* Top Glassmorphic Navbar */
+        .top-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 25, 44, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            color: #F8FAFC;
+            padding: 0.7rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(200, 162, 74, 0.25);
+            box-shadow: 0 8px 24px rgba(8, 18, 33, 0.18);
+        }
+
+        .navbar-brand {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            letter-spacing: 0.2px;
+            color: #FFFFFF;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .brand-emblem {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--gold-500), #9A7426);
+            color: var(--navy-950);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(200, 162, 74, 0.35);
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 0.35rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: rgba(241, 245, 249, 0.82);
+            text-decoration: none;
+            font-size: 0.86rem;
+            font-weight: 500;
+            padding: 0.42rem 0.85rem;
+            border-radius: 9999px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .nav-link.active {
+            color: var(--gold-400);
+            background: rgba(200, 162, 74, 0.16);
+            box-shadow: inset 0 0 0 1px rgba(200, 162, 74, 0.35);
+        }
+
+        .nav-utilities {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .util-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #F1F5F9;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 9999px;
+            padding: 0.38rem 0.75rem;
+            font-family: 'IBM Plex Sans Thai', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            white-space: nowrap;
+        }
+
+        .util-btn:hover {
+            background: rgba(200, 162, 74, 0.22);
+            border-color: rgba(200, 162, 74, 0.5);
+            color: #FFFFFF;
+        }
+
+        /* Editorial Luxury Hero Header */
+        .hero-header {
+            background:
+                radial-gradient(circle at 18% 20%, rgba(200, 162, 74, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 84% 78%, rgba(20, 184, 166, 0.20) 0%, transparent 48%),
+                linear-gradient(145deg, #07111F 0%, #0E223D 52%, #132F4C 100%);
+            color: #FFFFFF;
+            padding: 4.25rem 2rem 4.75rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(200, 162, 74, 0.28);
+        }
+
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(200, 162, 74, 0.14);
+            color: var(--gold-400);
+            backdrop-filter: blur(8px);
+            padding: 0.4rem 1.15rem;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            letter-spacing: 0.6px;
+            margin-bottom: 1.25rem;
+            font-weight: 600;
+            border: 1px solid rgba(200, 162, 74, 0.45);
+        }
+
+        .hero-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.65rem;
+            letter-spacing: -0.01em;
+            background: linear-gradient(180deg, #FFFFFF 35%, #E8D5A7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-course-sub {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.22rem;
+            font-weight: 400;
+            color: #CBD5E1;
+            margin-bottom: 1rem;
+            letter-spacing: 0.2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.02rem;
+            color: rgba(226, 232, 240, 0.84);
+            max-width: 760px;
+            margin: 0 auto 2rem auto;
+            font-weight: 300;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.72rem 1.45rem;
+            border-radius: 9999px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .hero-btn-primary {
+            background: linear-gradient(135deg, var(--gold-500), #B58B34);
+            color: var(--navy-950);
+            box-shadow: 0 10px 24px rgba(200, 162, 74, 0.35);
+            font-weight: 600;
+        }
+
+        .hero-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(200, 162, 74, 0.45);
+            filter: brightness(1.06);
+        }
+
+        .hero-btn-ghost {
+            background: rgba(255, 255, 255, 0.08);
+            color: #F8FAFC;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.16);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(130px, 1fr));
+            gap: 1rem;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            padding: 1rem 1.15rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(200, 162, 74, 0.45);
+        }
+
+        .stat-num {
+            font-size: 1.75rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', 'Kanit', sans-serif;
+            color: var(--gold-400);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(226, 232, 240, 0.82);
+            margin-top: 0.25rem;
+        }
+
+        /* Page Shell: Sticky TOC Sidebar + Main Content */
+        .page-shell {
+            max-width: 1460px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem 1.5rem;
+            display: grid;
+            grid-template-columns: 270px minmax(0, 1fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .sidebar-toc {
+            position: sticky;
+            top: 5.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            max-height: calc(100vh - 6.5rem);
+            overflow-y: auto;
+        }
+
+        .sidebar-toc::-webkit-scrollbar {
+            width: 5px;
+        }
+        .sidebar-toc::-webkit-scrollbar-thumb {
+            background: var(--border-strong);
+            border-radius: 9999px;
+        }
+
+        .toc-heading {
+            font-family: 'Kanit', sans-serif;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.5rem 0.7rem;
+            border-radius: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.86rem;
+            font-weight: 500;
+            transition: all 0.18s ease;
+            border-left: 2px solid transparent;
+        }
+
+        .toc-link:hover {
+            background: var(--bg-subtle);
+            color: var(--text-heading);
+        }
+
+        .toc-link.active {
+            background: rgba(200, 162, 74, 0.12);
+            color: var(--text-heading);
+            border-left-color: var(--gold-500);
+            font-weight: 600;
+        }
+
+        .toc-sublist {
+            list-style: none;
+            margin: 0.25rem 0 0.5rem 0.85rem;
+            padding-left: 0.75rem;
+            border-left: 1px dashed var(--border-strong);
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .toc-sublink {
+            display: block;
+            padding: 0.3rem 0.55rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: all 0.15s ease;
+        }
+
+        .toc-sublink:hover, .toc-sublink.active {
+            color: var(--secondary);
+            background: var(--bg-subtle);
+        }
+
+        .sidebar-progress-box {
+            margin-top: 1.15rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.45rem;
+            font-weight: 500;
+        }
+
+        .progress-track {
+            height: 8px;
+            background: var(--bg-subtle);
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--secondary), var(--gold-500));
+            border-radius: 9999px;
+            transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .main-container {
+            min-width: 0;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Section Cards */
+        section.card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            padding: 2.25rem;
+            margin-bottom: 2.25rem;
+            scroll-margin-top: 5.5rem;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        #files.card {
+            margin-top: 0 !important;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            padding: 1.65rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+
+        /* Nested Chapter Cards inside Theory Section */
+        #theory > .card {
+            background: var(--bg-subtle) !important;
+            border: 1px solid var(--border-color) !important;
+            border-left: 4px solid var(--gold-500) !important;
+            border-radius: var(--radius-md) !important;
+            padding: 1.75rem !important;
+            margin-bottom: 1.6rem !important;
+            scroll-margin-top: 5.5rem;
+        }
+
+        #theory > .card:hover {
+            box-shadow: var(--shadow);
+            border-color: var(--border-strong) !important;
+        }
+
+        #theory > .card > h3 {
+            font-family: 'Kanit', sans-serif !important;
+            font-size: 1.32rem !important;
+            color: var(--text-heading) !important;
+            margin-bottom: 0.85rem !important;
+            padding-bottom: 0.55rem;
+            border-bottom: 1px solid var(--border-color);
+            line-height: 1.35;
+        }
+
+        /* Chapter Quick-Jump Pills */
+        .chapter-pills-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-bottom: 1.75rem;
+            padding: 0.9rem 1rem;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+        }
+
+        .chapter-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 0.78rem;
+            border-radius: 9999px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.18s ease;
+        }
+
+        .chapter-pill:hover {
+            background: var(--navy-800);
+            color: #FFFFFF;
+            border-color: var(--navy-800);
+            transform: translateY(-1px);
+        }
+
+        /* Section Headings */
+        .section-header {
+            margin-bottom: 1.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.72rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            line-height: 1.3;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.35rem;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.72rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        .badge-primary { background: rgba(37, 99, 235, 0.12); color: #1D4ED8; }
+        .badge-secondary { background: rgba(15, 118, 110, 0.12); color: #0F766E; }
+        .badge-warning { background: rgba(200, 162, 74, 0.18); color: #92660A; }
+        .badge-danger { background: rgba(220, 38, 38, 0.12); color: #B91C1C; }
+        .badge-success { background: rgba(5, 150, 105, 0.13); color: #047857; }
+
+        [data-theme="dark"] .badge-primary { background: rgba(96, 165, 250, 0.18); color: #93C5FD; }
+        [data-theme="dark"] .badge-secondary { background: rgba(45, 212, 191, 0.16); color: #5EEAD4; }
+        [data-theme="dark"] .badge-warning { background: rgba(226, 194, 117, 0.18); color: #FDE68A; }
+        [data-theme="dark"] .badge-danger { background: rgba(248, 113, 113, 0.18); color: #FCA5A5; }
+        [data-theme="dark"] .badge-success { background: rgba(52, 211, 153, 0.18); color: #6EE7B7; }
+
+        /* Tables */
+        .data-table-container {
+            overflow-x: auto;
+            background: var(--bg-card);
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            margin: 1.35rem 0;
+            box-shadow: var(--shadow-xs);
+        }
+
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.91rem;
+            text-align: left;
+        }
+
+        table.data-table th {
+            background: var(--bg-subtle);
+            color: var(--text-heading);
+            padding: 0.95rem 1.05rem;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
+            border-bottom: 1.5px solid var(--border-strong);
+            white-space: nowrap;
+        }
+
+        table.data-table td {
+            padding: 0.9rem 1.05rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            color: var(--text-main);
+        }
+
+        table.data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        table.data-table tbody tr:hover td {
+            background: rgba(200, 162, 74, 0.05);
+        }
+
+        /* Formulas & Callouts */
+        .formula-box {
+            background: linear-gradient(135deg, rgba(15, 118, 110, 0.05) 0%, rgba(200, 162, 74, 0.05) 100%);
+            border: 1px solid rgba(15, 118, 110, 0.18);
+            border-left: 4px solid var(--secondary);
+            padding: 1.2rem 1.4rem;
+            border-radius: 12px;
+            margin: 1.15rem 0;
+            font-size: 0.96rem;
+            overflow-x: auto;
+        }
+
+        .formula-title {
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 1rem;
+        }
+
+        .callout-box {
+            background: rgba(37, 99, 235, 0.05);
+            border: 1px solid rgba(37, 99, 235, 0.16);
+            border-left: 4px solid var(--primary-light);
+            padding: 1.15rem 1.35rem;
+            border-radius: 12px;
+            margin: 1.15rem 0;
+        }
+
+        .callout-warning {
+            background: rgba(200, 162, 74, 0.09);
+            border: 1px solid rgba(200, 162, 74, 0.28);
+            border-left: 4px solid var(--gold-500);
+        }
+
+        .callout-danger {
+            background: rgba(220, 38, 38, 0.06);
+            border: 1px solid rgba(220, 38, 38, 0.22);
+            border-left: 4px solid var(--danger);
+        }
+
+        mjx-container[display="true"] {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0.35rem 0;
+        }
+
+        /* Interactive Calculator */
+        .calculator-container {
+            background: linear-gradient(145deg, var(--bg-subtle) 0%, var(--bg-card) 100%);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-md);
+            padding: 1.85rem;
+            margin: 1.5rem 0 0.5rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.15rem;
+            margin-top: 1.25rem;
+        }
+
+        .calc-input-group label {
+            display: block;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            margin-bottom: 0.4rem;
+        }
+
+        .calc-input-group input, .calc-input-group select {
+            width: 100%;
+            padding: 0.68rem 0.95rem;
+            border-radius: 10px;
+            border: 1.5px solid var(--border-strong);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.98rem;
+            background: var(--bg-card);
+            color: var(--text-heading);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .calc-input-group input:focus, .calc-input-group select:focus {
+            outline: none;
+            border-color: var(--gold-500);
+            box-shadow: 0 0 0 3px rgba(200, 162, 74, 0.2);
+        }
+
+        .calc-results-box {
+            background: transparent;
+            padding: 0;
+            border: none;
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+            gap: 0.95rem;
+            text-align: left;
+        }
+
+        .calc-res-item {
+            background: var(--bg-card);
+            padding: 1rem 1.05rem;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-xs);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .calc-res-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold-500);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .calc-res-label {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        .calc-res-val {
+            font-size: 1.32rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 0.28rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .calc-res-money {
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', 'IBM Plex Sans Thai', sans-serif;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-top: 0.28rem;
+            padding-top: 0.28rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        /* Filter & Search Controls */
+        .problems-toolbar {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.15rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1 1 100%;
+            min-width: 240px;
+            padding: 0.72rem 1.1rem;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-strong);
+            font-family: 'IBM Plex Sans Thai', sans-serif;
+            font-size: 0.95rem;
+            background: var(--bg-card);
+            color: var(--text-main);
+            margin-bottom: 0.55rem;
+            transition: all 0.2s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--gold-500);
+            box-shadow: 0 0 0 3px rgba(200, 162, 74, 0.2);
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.42rem 0.92rem;
+            border-radius: 9999px;
+            font-family: 'IBM Plex Sans Thai', sans-serif;
+            font-size: 0.83rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.18s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--gold-500);
+            color: var(--text-heading);
+        }
+
+        .filter-btn.active {
+            background: var(--navy-800);
+            color: #FFFFFF;
+            border-color: var(--navy-800);
+            box-shadow: 0 4px 12px rgba(19, 41, 75, 0.22);
+        }
+
+        [data-theme="dark"] .filter-btn.active {
+            background: var(--gold-500);
+            color: var(--navy-950);
+            border-color: var(--gold-500);
+            font-weight: 600;
+        }
+
+        .problems-status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1rem 0 1.25rem 0;
+            font-size: 0.86rem;
+            color: var(--text-muted);
+        }
+
+        /* Problem Cards */
+        .problem-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: all 0.22s ease;
+        }
+
+        .problem-card:hover {
+            box-shadow: var(--shadow);
+            border-color: var(--border-strong);
+        }
+
+        .problem-card.completed {
+            border-left: 4px solid var(--success);
+        }
+
+        .problem-header {
+            padding: 1.15rem 1.45rem;
+            background: var(--bg-subtle);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.18s ease;
+        }
+
+        .problem-header:hover {
+            background: rgba(200, 162, 74, 0.07);
+        }
+
+        .problem-title-area {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+        }
+
+        .problem-num {
+            background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+            color: var(--gold-400);
+            padding: 0.26rem 0.7rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.3px;
+        }
+
+        .problem-title {
+            font-family: 'Kanit', sans-serif;
+            font-weight: 500;
+            font-size: 1.08rem;
+            color: var(--text-heading);
+        }
+
+        .problem-header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .done-check-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-strong);
+            color: var(--text-muted);
+            padding: 0.3rem 0.72rem;
+            border-radius: 9999px;
+            font-family: 'IBM Plex Sans Thai', sans-serif;
+            font-size: 0.76rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            white-space: nowrap;
+        }
+
+        .done-check-btn:hover {
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .done-check-btn.is-done {
+            background: var(--success);
+            border-color: var(--success);
+            color: #FFFFFF;
+        }
+
+        .chevron-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            transition: transform 0.25s ease, background 0.2s ease;
+        }
+
+        .problem-card.is-open .chevron-icon {
+            transform: rotate(180deg);
+            background: var(--navy-800);
+            color: var(--gold-400);
+            border-color: var(--navy-800);
+        }
+
+        .problem-body {
+            padding: 1.45rem;
+        }
+
+        .problem-question {
+            font-size: 1rem;
+            line-height: 1.82;
+            margin-bottom: 1.25rem;
+            color: var(--text-main);
+            background: var(--bg-subtle);
+            padding: 1.2rem 1.35rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .solution-toggle-btn {
+            background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+            color: #FFFFFF;
+            border: 1px solid rgba(200, 162, 74, 0.35);
+            padding: 0.58rem 1.25rem;
+            border-radius: 10px;
+            font-family: 'IBM Plex Sans Thai', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .solution-toggle-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+            filter: brightness(1.12);
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 1.35rem;
+            padding-top: 1.35rem;
+            border-top: 1.5px dashed var(--border-strong);
+        }
+
+        .solution-content.active {
+            display: block;
+            animation: slideFadeIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes slideFadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-block {
+            margin-bottom: 1rem;
+            padding: 1.05rem 1.25rem;
+            background: var(--bg-subtle);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            border-left: 3.5px solid var(--primary-light);
+            overflow-x: auto;
+        }
+
+        .step-title {
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            color: var(--text-heading);
+            margin-bottom: 0.4rem;
+            font-size: 0.98rem;
+        }
+
+        .answer-box {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.09) 0%, rgba(200, 162, 74, 0.08) 100%);
+            border: 1.5px solid var(--success);
+            padding: 1.15rem 1.35rem;
+            border-radius: 12px;
+            color: var(--text-heading);
+            margin-top: 1.15rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .answer-highlight {
+            font-size: 1.18rem;
+            font-weight: 700;
+            color: var(--success);
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .pitfall-box {
+            background: rgba(220, 38, 38, 0.06);
+            border: 1px solid rgba(220, 38, 38, 0.22);
+            border-left: 4px solid var(--danger);
+            padding: 0.95rem 1.15rem;
+            border-radius: 10px;
+            margin-top: 0.95rem;
+            font-size: 0.91rem;
+            color: var(--text-main);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: var(--text-muted);
+            background: var(--bg-subtle);
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--border-strong);
+            display: none;
+        }
+
+        /* Dark mode overrides for legacy inline styles in content sections */
+        [data-theme="dark"] [style*="background:white"],
+        [data-theme="dark"] [style*="background: white"],
+        [data-theme="dark"] [style*="background:#ffffff"],
+        [data-theme="dark"] [style*="background:#fafafa"] {
+            background: var(--bg-elevated) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-main) !important;
+        }
+        [data-theme="dark"] [style*="background:#fefce8"],
+        [data-theme="dark"] [style*="background:#fffbeb"] {
+            background: rgba(200, 162, 74, 0.12) !important;
+            border-color: rgba(200, 162, 74, 0.35) !important;
+        }
+        [data-theme="dark"] [style*="background:#fff1f2"] {
+            background: rgba(220, 38, 38, 0.12) !important;
+            border-color: rgba(248, 113, 113, 0.35) !important;
+        }
+        [data-theme="dark"] [style*="background:#eff6ff"] {
+            background: rgba(59, 130, 246, 0.12) !important;
+            border-color: rgba(96, 165, 250, 0.35) !important;
+        }
+        [data-theme="dark"] [style*="background:#f0fdf4"],
+        [data-theme="dark"] [style*="background:#ecfdf5"] {
+            background: rgba(16, 185, 129, 0.12) !important;
+            border-color: rgba(52, 211, 153, 0.35) !important;
+        }
+        [data-theme="dark"] [style*="color:#4c0519"],
+        [data-theme="dark"] [style*="color:#78350f"],
+        [data-theme="dark"] [style*="color:#1e3a8a"],
+        [data-theme="dark"] [style*="color:#14532d"],
+        [data-theme="dark"] [style*="color:#1e293b"],
+        [data-theme="dark"] [style*="color:#334155"] {
+            color: var(--text-main) !important;
+        }
+        [data-theme="dark"] [style*="color:#991b1b"] { color: #FCA5A5 !important; }
+        [data-theme="dark"] [style*="color:#92400e"],
+        [data-theme="dark"] [style*="color:#b45309"] { color: #FCD34D !important; }
+        [data-theme="dark"] [style*="color:#1e40af"] { color: #93C5FD !important; }
+        [data-theme="dark"] [style*="color:#166534"],
+        [data-theme="dark"] [style*="color:#0f766e"] { color: #5EEAD4 !important; }
+
+        /* Floating Back to Top & Toast */
+        .back-to-top {
+            position: fixed;
+            bottom: 1.75rem;
+            right: 1.75rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+            color: var(--gold-400);
+            border: 1px solid rgba(200, 162, 74, 0.45);
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px);
+            transition: all 0.25s ease;
+            z-index: 950;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            background: var(--gold-500);
+            color: var(--navy-950);
+        }
+
+        .toast-notice {
+            position: fixed;
+            bottom: 1.75rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--navy-900);
+            color: #FFFFFF;
+            border: 1px solid rgba(200, 162, 74, 0.5);
+            padding: 0.65rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.86rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s ease;
+            z-index: 1300;
+        }
+
+        .toast-notice.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, #0B192C 0%, #060E1A 100%);
+            color: #94A3B8;
+            padding: 3.5rem 2rem 2.5rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(200, 162, 74, 0.25);
+        }
+
+        footer a { color: var(--gold-400); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1200px) {
+            .page-shell {
+                grid-template-columns: 1fr;
+                padding: 1.5rem 1rem 2.5rem 1rem;
+            }
+            .sidebar-toc {
+                display: none;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .top-navbar {
+                padding: 0.65rem 1rem;
+                flex-wrap: wrap;
+            }
+            .navbar-menu {
+                display: none;
+            }
+            .hero-header {
+                padding: 3rem 1.25rem 3.25rem 1.25rem;
+            }
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            section.card {
+                padding: 1.35rem;
+                border-radius: 16px;
+            }
+            .problem-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .top-navbar, .sidebar-toc, .reading-progress-track, .problems-toolbar,
+            .solution-toggle-btn, .back-to-top, .toast-notice, .hero-actions,
+            .chapter-pills-bar, .done-check-btn, .chevron-icon, .calculator-container {
+                display: none !important;
+            }
+            .page-shell {
+                display: block !important;
+                padding: 0 !important;
+            }
+            .solution-content {
+                display: block !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            section.card, .card, .problem-card {
+                box-shadow: none !important;
+                border: 1px solid #cbd5e1 !important;
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="reading-progress-track"><div class="reading-progress-bar" id="readingProgress"></div></div>
+
+<header class="top-navbar">
+    <a href="#" class="navbar-brand">
+        <span class="brand-emblem">Σ</span>
+        <span>4801112 เศรษฐศาสตร์วิศวกรรม</span>
+    </a>
+    <nav class="navbar-menu" id="topNavMenu">
+        <a href="#files" class="nav-link">วิเคราะห์ไฟล์</a>
+        <a href="#theory" class="nav-link">สรุป 10 บท</a>
+        <a href="#calculator" class="nav-link">คำนวณแฟกเตอร์</a>
+        <a href="#problems" class="nav-link">โจทย์ 27 ข้อ</a>
+        <a href="#tips" class="nav-link">กับดักข้อสอบ</a>
+    </nav>
+    <div class="nav-utilities">
+        <button class="util-btn" onclick="adjustFontSize(-0.06)" title="ลดขนาดตัวอักษร">A-</button>
+        <button class="util-btn" onclick="adjustFontSize(0.06)" title="เพิ่มขนาดตัวอักษร">A+</button>
+        <button class="util-btn" id="themeToggleBtn" onclick="toggleTheme()" title="สลับโหมดสว่าง/มืด">🌙 โหมดมืด</button>
+        <button class="util-btn" onclick="window.print()" title="พิมพ์หรือบันทึกเป็น PDF">🖨️ PDF</button>
+    </div>
+</header>
+
+<div class="hero-header">
+    <div class="hero-inner">
+        <span class="hero-badge">✦ EXECUTIVE STUDY EDITION • คู่มือเตรียมสอบฉบับสมบูรณ์ 2026</span>
+        <h1 class="hero-title">การวิเคราะห์ทางเศรษฐศาสตร์วิศวกรรม</h1>
+        <h2 class="hero-course-sub">Engineering Economic Analysis (รหัสวิชา 4801112 / 4811112)</h2>
+        <p class="hero-subtitle">สรุปเนื้อหาเชิงลึกครบทั้ง 10 บทเรียน วิเคราะห์โครงสร้างเอกสารทั้งหมดในชุดวิชา คลังสูตรพร้อมเครื่องคำนวณแฟกเตอร์ดอกเบี้ยแบบเรียลไทม์ และคลังโจทย์พร้อมเฉลยละเอียดทีละขั้นตอน</p>
+
+        <div class="hero-actions">
+            <a href="#theory" class="hero-btn hero-btn-primary">📖 เริ่มอ่านสรุป 10 บท</a>
+            <a href="#calculator" class="hero-btn hero-btn-ghost">🧮 เครื่องคำนวณแฟกเตอร์</a>
+            <a href="#problems" class="hero-btn hero-btn-ghost">📝 ฝึกทำโจทย์ 27 ข้อ</a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-num">9</div>
+                <div class="stat-label">ไฟล์เอกสารอ้างอิง</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">10</div>
+                <div class="stat-label">บทเรียนครอบคลุม</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">27</div>
+                <div class="stat-label">โจทย์พร้อมเฉลยละเอียด</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">ตรวจสอบความถูกต้อง</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-shell">
+    <aside class="sidebar-toc" aria-label="สารบัญเนื้อหา">
+        <div class="toc-heading">
+            <span>สารบัญเนื้อหา</span>
+            <span style="font-size:0.72rem; opacity:0.75;">TOC</span>
+        </div>
+        <ul class="toc-list" id="sidebarTocList">
+            <li><a href="#files" class="toc-link" data-section="files">📁 1. วิเคราะห์ไฟล์ (9 ไฟล์)</a></li>
+            <li>
+                <a href="#theory" class="toc-link" data-section="theory">📚 2. สรุปเนื้อหา 10 บท</a>
+                <ul class="toc-sublist" id="chapterSubToc"></ul>
+            </li>
+            <li><a href="#calculator" class="toc-link" data-section="calculator">🧮 3. เครื่องคำนวณแฟกเตอร์</a></li>
+            <li><a href="#problems" class="toc-link" data-section="problems">📝 4. โจทย์และเฉลย (27 ข้อ)</a></li>
+            <li><a href="#tips" class="toc-link" data-section="tips">🎯 5. กับดักข้อสอบ & เทคนิค</a></li>
+        </ul>
+
+        <div class="sidebar-progress-box">
+            <div class="progress-meta">
+                <span>ความคืบหน้าการทำโจทย์</span>
+                <strong id="sidebarProgressText" style="color:var(--text-heading);">0 / 27</strong>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="sidebarProgressBar"></div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-container">
+
+<!-- SECTION 1: FILE ANALYSIS -->
+<section id="files" class="card" style="margin-top: -1.5rem; border-top: 4px solid var(--primary);">
+    <div class="section-header">
+        <div>
+            <h2 class="section-title">📁 1. การวิเคราะห์ไฟล์ทั้งหมดในโฟลเดอร์ (File Inventory & Analysis)</h2>
+            <p class="section-desc">จากการตรวจสอบโครงสร้างและเนื้อหาไฟล์ทั้งหมด 9 ไฟล์ ทั้งในโฟลเดอร์หลักและโฟลเดอร์ย่อย "ไฟล์เอกสารเก่า ปี 2025"</p>
+        </div>
+        <span class="badge badge-primary" style="font-size:0.9rem; padding:0.4rem 0.8rem;">รวมทั้งหมด 9 ไฟล์ (208 หน้า)</span>
+    </div>
+
+    <div class="callout-box">
+        <h4 style="color:var(--primary); margin-bottom:0.4rem;">📌 ภาพรวมของชุดเอกสาร (Curriculum Architecture)</h4>
+        <p>โฟลเดอร์นี้บรรจุเอกสารประกอบการสอน เอกสารสรุปสูตร ตารางปัจจัยดอกเบี้ย และเฉลยการบ้านของรายวิชา <strong>4801112 / 4811112 การวิเคราะห์ทางเศรษฐศาสตร์วิศวกรรม (Engineering Economic Analysis)</strong> อย่างครบวงจร ตั้งแต่ระดับพื้นฐานพฤติกรรมต้นทุน การวิเคราะห์จุดคุ้มทุน การแปลงมูลค่าเงินตามเวลา การเปรียบเทียบโครงการด้วยมูลค่าปัจจุบัน (PW) มูลค่าเงินรายปี (AW) อัตราผลตอบแทนภายใน (IRR) อัตราส่วนผลประโยชน์ต่อเงินลงทุน (B/C Ratio) การทดแทนทรัพย์สิน (Replacement) ภาษีและค่าเสื่อมราคา จนถึงการตัดสินใจภายใต้ความไม่แน่นอนและแผนภาพต้นไม้การตัดสินใจ (Decision Trees)</p>
+    </div>
+
+    <!-- Summary Table -->
+    <div class="data-table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">ลำดับ</th>
+                    <th>ชื่อไฟล์ (File Name)</th>
+                    <th>ตำแหน่งที่อยู่</th>
+                    <th>ขนาด / หน้า</th>
+                    <th>ประเภท / บทบาท</th>
+                    <th>หัวข้อหลักที่ครอบคลุม</th>
+                    <th>จุดสังเกตสำคัญ / ไฮไลต์</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td><strong>4801112  1-69    Midterm.pdf</strong></td>
+                    <td>Root Directory</td>
+                    <td>57.0 MB <br><span class="badge badge-primary">125 หน้า</span></td>
+                    <td><span class="badge badge-primary">สไลด์หลัก (Midterm)</span></td>
+                    <td>ต้นทุน, High-Low, Least Squares, จุดคุ้มทุน 1 & หลายสินค้า, มูลค่าเงินตามเวลา, ดอกเบี้ยแท้จริง, การเปรียบเทียบ PW, เงินลงทุนนิรันดร์</td>
+                    <td>เป็นสไลด์แม่บทครึ่งแรกของวิชา มีโจทย์ตัวอย่างและแบบฝึกหัดขนาดใหญ่ 3 ชุด (หน้า 49-51, 91-99, 124-125)</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td><strong>ตารางดอกเบี้ย-แปลงดอกเบี้ย.pdf</strong></td>
+                    <td>Root Directory</td>
+                    <td>335 KB <br><span class="badge badge-secondary">24 หน้า</span></td>
+                    <td><span class="badge badge-secondary">ตารางอ้างอิง & สูตร</span></td>
+                    <td>ตารางแฟกเตอร์ดอกเบี้ย $i = 0.25\%$ ถึง $30\%$ (F/P, P/F, A/P, P/A, A/F, F/A), สูตรดอกเบี้ยระบุและดอกเบี้ยแท้จริง, Gradient</td>
+                    <td>เป็นเอกสารตารางดอกเบี้ยมาตรฐานที่ใช้เปิดสอบ พร้อมสรุปความสัมพันธ์ของแฟกเตอร์ทุกประเภทอย่างเป็นทางการ</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td><strong>07 4811112 เงินรายปี A.pdf</strong></td>
+                    <td>ไฟล์เอกสารเก่า ปี 2025</td>
+                    <td>7.76 MB <br><span class="badge badge-primary">21 หน้า</span></td>
+                    <td><span class="badge badge-primary">สไลด์บรรยายเฉพาะบท</span></td>
+                    <td>ค่าเทียบเท่าเงินจ่ายเท่ากันรายปี (Annual Worth - AW / EUAC), Capital Recovery (CR) 4 รูปแบบ, ตัวอย่างแทรคเตอร์, สะพาน, คลังสินค้า</td>
+                    <td>เน้นจุดเด่นของวิธี AW ที่ไม่ต้องหา ครน. (LCM) เมื่ออายุขัยไม่เท่ากัน และการวิเคราะห์ค่าเสื่อมบำรุงรักษาแบบเกรเดียนต์</td>
+                </tr>
+                <tr>
+                    <td><strong>4</strong></td>
+                    <td><strong>1.pdf</strong></td>
+                    <td>ไฟล์เอกสารเก่า ปี 2025</td>
+                    <td>2.86 MB <br><span class="badge badge-success">6 หน้า</span></td>
+                    <td><span class="badge badge-success">เฉลยทางการ (Solutions)</span></td>
+                    <td>เฉลยแบบฝึกหัดบทที่ 4: การฝากเงินรายไตรมาส, เงินรวมทบต้นรายเดือน, การปรับโครงสร้างสัญญารายปียกยอด (Deferred Annuity)</td>
+                    <td>แสดงวิธีทำ 2 รูปแบบอย่างละเอียดสำหรับโจทย์การปรับโครงสร้างสัญญาเงินรายปี (ข้อ 3)</td>
+                </tr>
+                <tr>
+                    <td><strong>5</strong></td>
+                    <td><strong>481112  ตอนที่ 2  นศ.pdf</strong></td>
+                    <td>ไฟล์เอกสารเก่า ปี 2025</td>
+                    <td>218 KB <br><span class="badge badge-primary">19 หน้า</span></td>
+                    <td><span class="badge badge-primary">สไลด์บรรยาย (Final)</span></td>
+                    <td>อัตราผลตอบแทนภายใน (IRR), การลงทุนส่วนเพิ่ม ($\Delta$IRR), B/C Ratio โครงการรัฐ, การทดแทนทรัพย์สิน, ต้นไม้ตัดสินใจ (Decision Trees)</td>
+                    <td>สไลด์ภาคเรียนหลังมิดเทอม มีโจทย์คำนวณเชิงลึก EX 5.1-5.4, EX 6.1-6.2, EX 11.1-11.3, EX 14.1-14.2</td>
+                </tr>
+                <tr>
+                    <td><strong>6</strong></td>
+                    <td><strong>คาดหมาย.pdf</strong></td>
+                    <td>ไฟล์เอกสารเก่า ปี 2025</td>
+                    <td>88 KB <br><span class="badge badge-warning">3 หน้า</span></td>
+                    <td><span class="badge badge-warning">ชีทโจทย์ตัวอย่าง</span></td>
+                    <td>ค่าคาดหมาย (Expected Value - EMV), การวิเคราะห์กระแสเงินสดภายใต้ความไม่แน่นอนของอุปสงค์ 3 สภาวะ (A, B, C) ร่วมกับเกรเดียนต์</td>
+                    <td>ตัวอย่างอู่ซ่อมเรือ และตัวอย่างการตัดสินใจเปิดตัวสินค้าใหม่ที่รวมเรื่องความน่าจะเป็นเข้ากับการแปลงมูลค่าปัจจุบัน</td>
+                </tr>
+                <tr>
+                    <td><strong>7</strong></td>
+                    <td><strong>ทดแทน.pdf</strong></td>
+                    <td>ไฟล์เอกสารเก่า ปี 2025</td>
+                    <td>65 KB <br><span class="badge badge-warning">7 หน้า</span></td>
+                    <td><span class="badge badge-warning">สไลด์เฉพาะบท</span></td>
+                    <td>การศึกษาการทดแทนทรัพย์สิน (Replacement Analysis), Defender vs Challenger, Sunk Cost, วิธี Conventional vs Cash Flow, บริษัท X vs Y</td>
+                    <td>เน้นย้ำเรื่องต้นทุนจม (Sunk Cost) ว่าราคาที่ซื้อมาในอดีตต้องตัดทิ้ง ไม่นำมาคิดในการตัดสินใจ</td>
+                </tr>
+                <tr>
+                    <td><strong>8</strong></td>
+                    <td><strong>ภาษี.pdf</strong></td>
+                    <td>ไฟล์เอกสารเก่า ปี 2025</td>
+                    <td>60 KB <br><span class="badge badge-warning">2 หน้า</span></td>
+                    <td><span class="badge badge-warning">ชีทสรุป & โจทย์</span></td>
+                    <td>ภาษีเงินได้นิติบุคคล (Corporate Income Tax), ค่าเสื่อมราคา (Depreciation), Taxable Income, Net Profit, CFAT</td>
+                    <td>มีโจทย์ตัวอย่างการคำนวณภาษี 30% พร้อมข้อสังเกตจุดพิมพ์ตกตัวเลขในสไลด์ต้นฉบับที่ต้องระวัง</td>
+                </tr>
+                <tr>
+                    <td><strong>9</strong></td>
+                    <td><strong>สูตร.pdf</strong></td>
+                    <td>ไฟล์เอกสารเก่า ปี 2025</td>
+                    <td>242 KB <br><span class="badge badge-secondary">1 หน้า</span></td>
+                    <td><span class="badge badge-secondary">สรุปสูตรย่อ (Cheat Sheet)</span></td>
+                    <td>แฟกเตอร์หลัก 6 ตัว: P/F, F/P, P/A, A/P, A/F, F/A และสูตรดอกเบี้ยเชิงเดี่ยว $F = P(1+in)$</td>
+                    <td>แผ่นสรุปสูตรด่วนขนาด 1 หน้า เหมาะสำหรับทบทวนสัญลักษณ์ Functional Notation และสมการพื้นฐาน</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Deep-dive Cards for Key Files -->
+    <h3 style="font-family:'Kanit'; margin: 2rem 0 1rem 0; color:var(--primary-dark);">🔍 รายละเอียดเชิงวิเคราะห์เจาะลึกรายไฟล์ (In-Depth Insights)</h3>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.25rem;">
+        
+        <div class="card" style="border-left:4px solid var(--primary);">
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                <h4 style="color:var(--primary-dark); font-family:'Kanit';">1. 4801112  1-69    Midterm.pdf</h4>
+                <span class="badge badge-primary">ไฟล์หลัก Midterm</span>
+            </div>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.75rem;">ไฟล์เอกสารขนาดใหญ่ที่สุด (125 หน้า) เป็นสไลด์บรรยายหลักของอาจารย์ประจำวิชา</p>
+            <ul style="font-size:0.88rem; padding-left:1.2rem; line-height:1.7;">
+                <li><strong>หน้าที่ 1-20:</strong> ทบทวนหลักการเศรษฐศาสตร์วิศวกรรม, การจำแนกต้นทุน (Fixed, Variable, Sunk, Opportunity), วิธีแยกต้นทุน High-Low Method และวิธีสมการถดถอยเชิงเส้น (Least Squares)</li>
+                <li><strong>หน้าที่ 21-51:</strong> การวิเคราะห์จุดคุ้มทุน (Break-Even Analysis) ทั้งกรณีสินค้าเดียว, กลยุทธ์แก้ปัญหาโรงงานขาดทุน 4 แนวทาง, และจุดคุ้มทุนกรณีผลิตสินค้าหลายชนิด (Weighted Contribution Margin Ratio)</li>
+                <li><strong>หน้าที่ 52-99:</strong> มูลค่าเงินตามเวลา ดอกเบี้ยเชิงเดี่ยว ดอกเบี้ยทบต้น ดอกเบี้ยแท้จริง (Effective Interest Rate) และโจทย์แบบฝึกหัดชุดใหญ่ 10 ข้อ (หน้า 91-99)</li>
+                <li><strong>หน้าที่ 100-125:</strong> การแปลงกระแสเงินสดเทียบเท่า, เงินรายปียกยอด, การวิเคราะห์และเปรียบเทียบทางเลือกด้วยมูลค่าปัจจุบัน (PW Method), การหา ครน. (LCM), และต้นทุนเงินลงทุนนิรันดร์ (Capitalized Cost)</li>
+            </ul>
+        </div>
+
+        <div class="card" style="border-left:4px solid var(--secondary);">
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                <h4 style="color:var(--primary-dark); font-family:'Kanit';">2. 481112  ตอนที่ 2  นศ.pdf & ทดแทน.pdf</h4>
+                <span class="badge badge-secondary">ไฟล์บรรยาย Final</span>
+            </div>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.75rem;">ครอบคลุมเนื้อหาครึ่งหลังของวิชา ซึ่งเป็นหัวข้อที่ใช้ออกข้อสอบปลายภาค (Final Examination)</p>
+            <ul style="font-size:0.88rem; padding-left:1.2rem; line-height:1.7;">
+                <li><strong>การหาอัตราผลตอบแทน (IRR):</strong> นิยาม $PW = 0$, การเปิดตารางและประมาณค่าด้วยเชิงเส้น (Interpolation)</li>
+                <li><strong>การวิเคราะห์เงินลงทุนส่วนเพิ่ม ($\Delta$IRR):</strong> กฎเหล็กที่ห้ามเลือกโครงการจาก IRR สูงสุดตรงๆ แต่ต้องเรียงลำดับเงินลงทุนและวิเคราะห์ผลตอบแทนส่วนเพิ่มเทียบกับ MARR</li>
+                <li><strong>Benefit-Cost Ratio (B/C):</strong> การประเมินโครงการภาครัฐด้วยอัตราส่วนผลประโยชน์ต่อเงินลงทุน และการวิเคราะห์ $\Delta B / \Delta C$</li>
+                <li><strong>Asset Replacement:</strong> การประเมินเพื่อเปลี่ยนเครื่องจักร/รถยนต์, กฎการตัดต้นทุนจม (Sunk Cost), วิธี Cash Flow vs Conventional</li>
+                <li><strong>Decision Tree:</strong> การเขียนแผนภาพกิ่งไม้ตัดสินใจ, จุดสี่เหลี่ยม (Decision Node) vs จุดวงกลม (Chance Node), การ Rollback ค่าคาดหมาย (EMV)</li>
+            </ul>
+        </div>
+
+        <div class="card" style="border-left:4px solid var(--accent);">
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                <h4 style="color:var(--primary-dark); font-family:'Kanit';">3. ภาษี.pdf, คาดหมาย.pdf, 1.pdf, 07 เงินรายปี A</h4>
+                <span class="badge badge-warning">ไฟล์เฉพาะทาง & เฉลย</span>
+            </div>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.75rem;">ไฟล์เสริมสำหรับการฝึกทำโจทย์และตรวจสอบความถูกต้องของสูตรคำนวณ</p>
+            <ul style="font-size:0.88rem; padding-left:1.2rem; line-height:1.7;">
+                <li><strong>07 เงินรายปี A.pdf:</strong> อธิบายสูตร Capital Recovery (CR) 4 รูปแบบอย่างละเอียด และสาธิตให้เห็นว่าทั้ง 4 สูตรให้ค่าเท่ากันคือ 47,350 บาทสำหรับเครื่องกลึง</li>
+                <li><strong>1.pdf:</strong> เฉลยการบ้านบทที่ 4 แสดงวิธีคิดการแปลงสัญญารายปี 2 วิธีอย่างละเอียด พร้อมคำตอบที่ตรงกัน</li>
+                <li><strong>ภาษี.pdf (จุดระวัง):</strong> สไลด์เขียน $28,800,000 	imes 30\% = 864,000$ (พิมพ์ตกเลข 0 ไปหนึ่งหลัก แท้จริงคือ $8,640,000$) แต่บรรทัดกำไรหลังหักภาษีเขียน $20,160,000$ ซึ่งคำนวณจาก $28,800,000 - 8,640,000$ ได้ถูกต้อง</li>
+                <li><strong>คาดหมาย.pdf:</strong> รวมตัวอย่างคำนวณค่าคาดหมาย (EMV) ของอู่ซ่อมเรือ และโครงการสินค้าใหม่ที่มีทั้ง Annuity และ Arithmetic Gradient</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SECTION 2: COMPREHENSIVE THEORY SUMMARY -->
+<section id="theory" class="card" style="border-top: 4px solid var(--secondary);">
+    <div class="section-header">
+        <div>
+            <h2 class="section-title">📚 2. สรุปเข้มเนื้อหา 10 บทหลัก (Core Engineering Economics Knowledge)</h2>
+            <p class="section-desc">รวบรวมทฤษฎี หลักการสำคัญ สูตรคำนวณ และกฎการตัดสินใจทางวิศวกรรมที่จำเป็นสำหรับการวิเคราะห์และทำข้อสอบ</p>
+        </div>
+        <span class="badge badge-secondary" style="font-size:0.9rem; padding:0.4rem 0.8rem;">10 โมดูลเนื้อหาครบวงจร</span>
+    </div>
+
+    <!-- MODULE 1 -->
+    <div class="card" style="background:#fafafa; border-left: 4px solid var(--primary);">
+        <h3 style="color:var(--primary); font-family:'Kanit'; margin-bottom:0.75rem;">บทที่ 1: มโนทัศน์พื้นฐานและพฤติกรรมต้นทุน (Cost Concepts & Cost Behavior)</h3>
+        <p>เศรษฐศาสตร์วิศวกรรมคือศาสตร์ที่นำหลักการทางเศรษฐศาสตร์มาประยุกต์ใช้เพื่อเปรียบเทียบประสิทธิภาพ ความคุ้มค่า และช่วยวิศวกรในการตัดสินใจเลือกโครงการลงทุนที่ดีที่สุด</p>
+        
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin:1rem 0;">
+            <div style="background:white; padding:1rem; border-radius:8px; border:1px solid #e2e8f0;">
+                <h5 style="color:var(--primary-dark); font-weight:600;">1. การจำแนกประเภทต้นทุน</h5>
+                <ul style="font-size:0.88rem; padding-left:1.2rem; margin-top:0.35rem;">
+                    <li><strong>ต้นทุนคงที่ (Fixed Cost - FC):</strong> ต้นทุนที่ไม่แปรผันตามปริมาณผลผลิตในระยะสั้น เช่น ค่าเช่า, เงินเดือนฝ่ายบริหาร, ค่าเสื่อมราคาอาคาร</li>
+                    <li><strong>ต้นทุนผันแปร (Variable Cost - VC):</strong> ต้นทุนที่เปลี่ยนแปลงตามปริมาณการผลิตโดยตรง เช่น ค่าวัตถุดิบ, ค่าแรงงานทางตรง, ค่าพลังงานในสายการผลิต</li>
+                    <li><strong>ต้นทุนรวม (Total Cost - TC):</strong> $TC = FC + VC = FC + v \cdot N$ (เมื่อ $v$ คือต้นทุนผันแปรต่อหน่วย, $N$ คือปริมาณการผลิต)</li>
+                    <li><strong>ต้นทุนเฉลี่ยต่อหน่วย (Average Cost - AC):</strong> $AC = TC / N = (FC / N) + v$ (เมื่อผลิตมากขึ้น $AC$ จะลดลงเนื่องจาก Economy of Scale)</li>
+                </ul>
+            </div>
+            <div style="background:white; padding:1rem; border-radius:8px; border:1px solid #e2e8f0;">
+                <h5 style="color:var(--primary-dark); font-weight:600;">2. ต้นทุนพิเศษในการตัดสินใจ</h5>
+                <ul style="font-size:0.88rem; padding-left:1.2rem; margin-top:0.35rem;">
+                    <li><strong>ต้นทุนจม (Sunk Cost):</strong> เงินที่จ่ายไปแล้วในอดีต ไม่สามารถเรียกคืนได้ <em>กฎเหล็ก: ห้ามนำมาคิดในการตัดสินใจเลือกโครงการในอนาคต!</em></li>
+                    <li><strong>ต้นทุนค่าเสียโอกาส (Opportunity Cost):</strong> มูลค่าของผลประโยชน์สูงสุดที่สูญเสียไปจากการเลือกทางเลือกหนึ่งแทนที่จะเลือกอีกทางเลือกหนึ่ง</li>
+                    <li><strong>ต้นทุนส่วนเพิ่ม (Marginal Cost - MC):</strong> ต้นทุนที่เพิ่มขึ้นเมื่อผลิตสินค้าเพิ่มขึ้นอีก 1 หน่วย ($MC = d(TC)/dN$)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="formula-box">
+            <div class="formula-title">📐 วิธีการแยกพฤติกรรมต้นทุน (Cost Separation Methods)</div>
+            <p><strong>1) วิธีสูง-ต่ำ (High-Low Method):</strong> ใช้ข้อมูลจุดที่ปริมาณการผลิตสูงสุดและต่ำสุด</p>
+            $$v = \frac{TC_{high} - TC_{low}}{N_{high} - N_{low}}, \quad FC = TC_{high} - v(N_{high}) = TC_{low} - v(N_{low})$$
+            <p style="margin-top:0.5rem;"><strong>2) วิธีสมการถดถอยเชิงเส้น (Least Squares Regression):</strong> กำหนดสมการต้นทุน $Y = a + bX$ โดยที่ $a = FC$, $b = v$</p>
+            $$b = \frac{n\sum XY - \sum X \sum Y}{n\sum X^2 - (\sum X)^2}, \quad a = \bar{Y} - b\bar{X}$$
+        </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="card" style="background:#fafafa; border-left: 4px solid var(--secondary);">
+        <h3 style="color:var(--secondary); font-family:'Kanit'; margin-bottom:0.75rem;">บทที่ 2: การวิเคราะห์จุดคุ้มทุน (Break-Even Analysis)</h3>
+        <p>จุดคุ้มทุนคือระดับกิจกรรมหรือปริมาณการผลิตที่ทำให้รายได้รวม (Total Revenue - TR) เท่ากับต้นทุนรวม (Total Cost - TC) พอดี ส่งผลให้ผลกำไรสุทธิเป็นศูนย์ ($\Pi = 0$)</p>
+
+        <div class="formula-box">
+            <div class="formula-title">📐 สูตรจุดคุ้มทุนผลิตภัณฑ์เดี่ยว (Single-Product Break-Even)</div>
+            $$TR = p \cdot N, \quad TC = FC + v \cdot N$$
+            $$\text{จุดคุ้มทุน (หน่วย): } N^* = \frac{FC}{p - v} = \frac{FC}{MC}$$
+            $$\text{สมการกำไร: } \Pi = TR - TC = N(p - v) - FC$$
+            $$\text{ปริมาณผลิตเพื่อให้ได้กำไรตามเป้าหมาย } \Pi: N = \frac{FC + \Pi}{p - v}$$
+            <p style="font-size:0.85rem; color:#0f766e; margin-top:0.3rem;">*โดยที่ $p$ = ราคาขายต่อหน่วย, $v$ = ต้นทุนผันแปรต่อหน่วย, $(p - v) = MC$ = ส่วนผลได้ต่อหน่วย (Contribution Margin per unit)</p>
+        </div>
+
+        <div class="formula-box" style="background:#fefce8; border-color:var(--accent);">
+            <div class="formula-title" style="color:#b45309;">📊 จุดคุ้มทุนผลิตภัณฑ์หลายชนิด (Multi-Product Break-Even Analysis)</div>
+            <p>กรณีโรงงานผลิตสินค้าหลายชนิดที่ไม่สามารถรวมจำนวนหน่วยได้ตรงๆ ต้องวิเคราะห์ผ่านสัดส่วนรายได้และ <strong>อัตราร้อยละส่วนผลได้ถ่วงน้ำหนัก (Average Margin Contribution - AMC)</strong>:</p>
+            $$MS_i = \frac{p_i - v_i}{p_i} = \frac{MC_i}{p_i} \quad (\text{\% ส่วนผลได้ต่อราคาขายของสินค้าแต่ละชนิด})$$
+            $$IS_i = \frac{R_i}{R_{total}} \quad (\text{สัดส่วนยอดขายของสินค้าแต่ละชนิดเทียบยอดขายรวม})$$
+            $$AMC = \sum_{i=1}^k (IS_i \times MS_i) = \frac{\sum R_i \cdot MS_i}{R_{total}} \quad (\text{ส่วนผลได้เฉลี่ยถ่วงน้ำหนัก})$$
+            $$\text{ยอดขายรวม ณ จุดคุ้มทุน (บาท): } R^* = \frac{FC}{AMC}$$
+        </div>
+
+        <div class="callout-box callout-warning">
+            <h5 style="color:#92400e; font-weight:600;">⚠️ ข้อสังเกตสำคัญในการตัดสินใจยกเลิกผลิตภัณฑ์ที่ขาดทุน:</h5>
+            <p style="font-size:0.9rem;">การที่สินค้าชนิดหนึ่งมีตัวเลขกำไรติดลบ (ขาดทุนทางบัญชี) ไม่ได้แปลว่าควรยกเลิกการผลิตทันที! <strong>ตราบใดที่ส่วนผลได้ ($MS_i$ หรือ $p_i - v_i$) ยังเป็นบวก</strong> สินค้านั้นยังช่วยแบกรับต้นทุนคงที่ (FC) ส่วนกลาง หากยกเลิกไปโดยที่ FC ไม่ได้ลดลงตาม จะทำให้กำไรสุทธิรวมของบริษัทลดลงทันที (ดูตัวอย่างในโจทย์ข้อ 5)</p>
+        </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="card" style="background:#fafafa; border-left: 4px solid var(--accent);">
+        <h3 style="color:var(--accent); font-family:'Kanit'; margin-bottom:0.75rem;">บทที่ 3: มูลค่าของเงินตามเวลาและอัตราดอกเบี้ย (Time Value of Money & TVM Factors)</h3>
+        <p>เงิน 1 บาทในวันนี้มีค่ามากกว่าเงิน 1 บาทในอนาคตเสมอ เนื่องจากความสามารถในการสร้างผลตอบแทนจากการลงทุน (Earning Power) และผลกระทบจากอัตราเงินเฟ้อ</p>
+
+        <div class="formula-box">
+            <div class="formula-title">📐 ดอกเบี้ยเชิงเดี่ยว vs ดอกเบี้ยทบต้น (Simple vs Compound Interest)</div>
+            <p><strong>ดอกเบี้ยเชิงเดี่ยว (Simple Interest):</strong> $I = P \cdot i \cdot n \implies F = P(1 + in)$</p>
+            <p><strong>ดอกเบี้ยทบต้น (Compound Interest):</strong> คิดดอกเบี้ยบนดอกเบี้ยของงวดก่อนหน้า $F = P(1 + i)^n$</p>
+            <p><strong>อัตราดอกเบี้ยแท้จริง (Effective Interest Rate, $i_e$):</strong> เมื่ออัตราดอกเบี้ยที่ระบุคือ $r$ ต่อปี และทบต้น $m$ ครั้งต่อปี:</p>
+            $$i_e = \left(1 + \frac{r}{m}\right)^m - 1, \quad \text{ทบต้นต่อเนื่อง (Continuous Compounding): } i_e = e^r - 1$$
+        </div>
+
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>แฟกเตอร์ (Factor)</th>
+                        <th>สัญลักษณ์ย่อ</th>
+                        <th>ชื่อเต็ม (Factor Name)</th>
+                        <th>สมการคำนวณ (Formula)</th>
+                        <th>โจทย์ให้ / หา</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>$(F/P, i, n)$</strong></td>
+                        <td>CAF / SPCAF</td>
+                        <td>Single Payment Compound Amount</td>
+                        <td>$(1 + i)^n$</td>
+                        <td>รู้ $P$ หา $F$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$(P/F, i, n)$</strong></td>
+                        <td>PWF / SPPWF</td>
+                        <td>Single Payment Present Worth</td>
+                        <td>$(1 + i)^{-n} = \frac{1}{(1+i)^n}$</td>
+                        <td>รู้ $F$ หา $P$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$(F/A, i, n)$</strong></td>
+                        <td>SCAF / USCAF</td>
+                        <td>Uniform Series Compound Amount</td>
+                        <td>$\frac{(1 + i)^n - 1}{i}$</td>
+                        <td>รู้ $A$ หา $F$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$(A/F, i, n)$</strong></td>
+                        <td>SFF</td>
+                        <td>Sinking Fund Factor</td>
+                        <td>$\frac{i}{(1 + i)^n - 1}$</td>
+                        <td>รู้ $F$ หา $A$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$(P/A, i, n)$</strong></td>
+                        <td>SPWF / USPWF</td>
+                        <td>Uniform Series Present Worth</td>
+                        <td>$\frac{(1 + i)^n - 1}{i(1 + i)^n}$</td>
+                        <td>รู้ $A$ หา $P$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$(A/P, i, n)$</strong></td>
+                        <td>CRF</td>
+                        <td>Capital Recovery Factor</td>
+                        <td>$\frac{i(1 + i)^n}{(1 + i)^n - 1}$</td>
+                        <td>รู้ $P$ หา $A$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$(P/G, i, n)$</strong></td>
+                        <td>GPWF</td>
+                        <td>Arithmetic Gradient Present Worth</td>
+                        <td>$\frac{1}{i}\left[\frac{(1+i)^n - 1}{i(1+i)^n} - \frac{n}{(1+i)^n}\right]$</td>
+                        <td>รู้ $G$ หา $P$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$(A/G, i, n)$</strong></td>
+                        <td>GUSF</td>
+                        <td>Gradient Uniform Series</td>
+                        <td>$\frac{1}{i} - \frac{n}{(1+i)^n - 1}$</td>
+                        <td>รู้ $G$ หา $A$</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="background:#e0f2fe; padding:0.85rem 1.25rem; border-radius:8px; font-size:0.9rem; color:#0369a1;">
+            💡 <strong>กฎการเพิ่มเป็นสองเท่า (Rule of 72):</strong> ระยะเวลาที่เงินลงทุนจะเพิ่มขึ้นเป็น 2 เท่า ประมาณได้จาก $n \approx 72 / (i\%)$. เช่น ที่ดอกเบี้ย 8% จะใช้เวลาประมาณ $72/8 = 9$ ปี (ค่าแท้จริงคือ $\ln(2)/\ln(1.08) = 9.006$ ปี)
+        </div>
+    </div>
+
+    <!-- MODULE 4 & 5 -->
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap:1.25rem; margin-top:1.5rem;">
+        
+        <!-- MODULE 4 -->
+        <div class="card" style="background:#fafafa; border-left: 4px solid #6366f1;">
+            <h3 style="color:#4f46e5; font-family:'Kanit'; margin-bottom:0.75rem;">บทที่ 4: การเปรียบเทียบด้วยมูลค่าปัจจุบัน (Present Worth - PW)</h3>
+            <p style="font-size:0.9rem;">แปลงกระแสเงินสดรับและจ่ายทั้งหมดในอนาคตกลับมาเป็นมูลค่า ณ เวลาปัจจุบัน ($t = 0$) ที่อัตราคิดลด $i$ (MARR)</p>
+            <div class="formula-box" style="margin:0.75rem 0;">
+                $$PW = \sum_{t=0}^n \frac{CF_t}{(1 + i)^t} = PW(\text{Inflow}) - PW(\text{Outflow})$$
+            </div>
+            <h5 style="color:var(--primary-dark); font-size:0.92rem; margin-top:0.5rem;">📌 กฎการเปรียบเทียบทางเลือกที่มีอายุไม่เท่ากัน:</h5>
+            <ul style="font-size:0.85rem; padding-left:1.2rem; line-height:1.6;">
+                <li><strong>วิธีหา ครน. ของอายุ (Least Common Multiple - LCM):</strong> สมมติการลงทุนซ้ำ (Repeatability Assumption) เพื่อให้ระยะเวลาเปรียบเทียบเท่ากัน เช่น ทางเลือกอายุ 6 ปี กับ 8 ปี ต้องเปรียบเทียบที่ระยะเวลา 24 ปี</li>
+                <li><strong>วิธีกำหนดกรอบเวลาการศึกษา (Study Period):</strong> กำหนดช่วงเวลาแน่นอน เช่น 10 ปี และคิดมูลค่าซากที่หลงเหลือ ณ สิ้นปีที่ 10</li>
+                <li><strong>มูลค่าเทียบเท่าเงินลงทุนนิรันดร์ (Capitalized Cost - CC):</strong> สำหรับโครงการอายุยาวนานอนันต์ ($n \to \infty$) เช่น คลอง เขื่อน สะพาน
+                $$CC = P_0 + \frac{A}{i} + \frac{\text{Replacement Fund}}{(1+i)^k - 1}$$</li>
+            </ul>
+        </div>
+
+        <!-- MODULE 5 -->
+        <div class="card" style="background:#fafafa; border-left: 4px solid #06b6d4;">
+            <h3 style="color:#0891b2; font-family:'Kanit'; margin-bottom:0.75rem;">บทที่ 5: ค่าเทียบเท่าเงินจ่ายเท่ากันรายปี (Annual Worth - AW / EUAC)</h3>
+            <p style="font-size:0.9rem;">แปลงกระแสเงินสดทั้งหมดให้เป็นเงินรายปีที่เท่ากันทุกปีตลอดอายุโครงการ</p>
+            <div class="callout-box" style="background:#ecfeff; border-color:#06b6d4; padding:0.75rem; margin:0.75rem 0; font-size:0.88rem;">
+                ⭐ <strong>ข้อได้เปรียบสูงสุดของวิธี AW:</strong> เมื่อเปรียบเทียบทางเลือกที่มีอายุขัยไม่เท่ากัน <em>ไม่จำเป็นต้องหา ครน. (LCM)</em> คำนวณ AW ของแต่ละทางเลือกตามอายุขัยของตัวเองได้ทันที!
+            </div>
+            <div class="formula-box" style="margin:0.75rem 0;">
+                <div class="formula-title">สูตร Capital Recovery (CR) 4 รูปแบบ:</div>
+                <div style="font-size:0.85rem; line-height:1.7;">
+                    1) $A = P(A/P, i, n) - S(A/F, i, n)$<br>
+                    2) $A = [P - S(P/F, i, n)](A/P, i, n)$<br>
+                    3) $A = (P - S)(A/P, i, n) + S \cdot i$<br>
+                    4) $A = (P - S)(A/F, i, n) + P \cdot i$
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 6 & 7 -->
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap:1.25rem; margin-top:1.5rem;">
+        
+        <!-- MODULE 6 -->
+        <div class="card" style="background:#fafafa; border-left: 4px solid #8b5cf6;">
+            <h3 style="color:#7c3aed; font-family:'Kanit'; margin-bottom:0.75rem;">บทที่ 6: อัตราผลตอบแทนภายในและการลงทุนส่วนเพิ่ม (IRR & $\Delta$IRR)</h3>
+            <p style="font-size:0.9rem;"><strong>IRR ($i^*$):</strong> คืออัตราคิดลดที่ทำให้มูลค่าปัจจุบันสุทธิเป็นศูนย์ ($NPW = 0$) หรือทำให้ $PW(\text{รายรับ}) = PW(\text{รายจ่าย})$</p>
+            <div class="callout-box callout-danger" style="padding:0.75rem; margin:0.75rem 0; font-size:0.85rem;">
+                🚨 <strong>กับดักข้อสอบยอดนิยม (Crucial Rule):</strong> ห้ามเลือกโครงการที่มี IRR สูงสุดตรงๆ เด็ดขาด! เพราะโครงการที่เงินลงทุนน้อยอาจให้ IRR สูง แต่สร้างมูลค่ารวม (NPW) น้อยกว่าโครงการขนาดใหญ่ ต้องใช้วิธี <strong>วิเคราะห์เงินลงทุนส่วนเพิ่ม ($\Delta$IRR)</strong>
+            </div>
+            <h5 style="color:var(--primary-dark); font-size:0.9rem;">ขั้นตอน Incremental Analysis:</h5>
+            <ol style="font-size:0.85rem; padding-left:1.2rem; line-height:1.6;">
+                <li>เรียงลำดับทางเลือกตามเงินลงทุนเริ่มต้นจากน้อยไปมาก ($P_1 < P_2 < P_3$)</li>
+                <li>ตรวจว่า $IRR_{base} \ge MARR$ หรือไม่ ถ้าไม่ผ่านให้ตัดทิ้ง</li>
+                <li>เปรียบเทียบส่วนต่าง $\Delta P = P_2 - P_1$ และ $\Delta A = A_2 - A_1$ เพื่อหา $\Delta i^*$</li>
+                <li>ถ้า $\Delta i^* \ge MARR$ ให้เลือกโครงการที่มีเงินลงทุนสูงกว่า ($P_2$); ถ้าไม่ถึงให้เลือกโครงการเดิม ($P_1$)</li>
+            </ol>
+        </div>
+
+        <!-- MODULE 7 -->
+        <div class="card" style="background:#fafafa; border-left: 4px solid #14b8a6;">
+            <h3 style="color:#0d9488; font-family:'Kanit'; margin-bottom:0.75rem;">บทที่ 7: อัตราส่วนผลประโยชน์ต่อเงินลงทุน (Benefit-Cost Ratio - B/C)</h3>
+            <p style="font-size:0.9rem;">ใช้สำหรับประเมินโครงการภาครัฐหรือสาธารณูปโภค โดยคำนึงถึงผลประโยชน์ของผู้ใช้บริการ (User Benefits) เทียบกับต้นทุนที่รัฐจ่าย</p>
+            <div class="formula-box" style="margin:0.75rem 0;">
+                $$B/C = \frac{PW(\text{Benefits}) - PW(\text{Disbenefits})}{PW(\text{Capital Cost}) + PW(\text{O\&M})} = \frac{\Delta B}{\Delta C}$$
+            </div>
+            <ul style="font-size:0.85rem; padding-left:1.2rem; line-height:1.6;">
+                <li><strong>เกณฑ์การตัดสินใจ:</strong> ถ้า $B/C \ge 1.0$ โครงการคุ้มค่าและยอมรับได้</li>
+                <li><strong>การเปรียบเทียบโครงการทางเลือก (Incremental B/C):</strong> เรียงลำดับเงินลงทุน แล้วคำนวณ $\Delta B / \Delta C$ หาก $\ge 1.0$ จึงจะยอมรับการเพิ่มเงินลงทุนไปยังโครงการที่ใหญ่กว่า</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MODULE 8, 9, 10 -->
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap:1.25rem; margin-top:1.5rem;">
+        
+        <!-- MODULE 8 -->
+        <div class="card" style="background:#fafafa; border-left: 4px solid #f97316;">
+            <h3 style="color:#ea580c; font-family:'Kanit'; margin-bottom:0.75rem;">บทที่ 8: การทดแทนทรัพย์สิน (Replacement Analysis)</h3>
+            <ul style="font-size:0.86rem; padding-left:1.2rem; line-height:1.65;">
+                <li><strong>Defender:</strong> ทรัพย์สินเดิมที่ใช้งานอยู่ปัจจุบัน</li>
+                <li><strong>Challenger:</strong> ทรัพย์สินใหม่ที่เสนอเข้ามาทดแทน</li>
+                <li><strong>Sunk Cost:</strong> ราคาซื้อทรัพย์สินเดิมในอดีตและมูลค่าทางบัญชี <em>ห้ามนำมาคิด!</em> ให้ใช้ <strong>ราคาตลาดปัจจุบัน (Market/Trade-in Value)</strong> เสมือนเป็นเงินลงทุนตั้งต้นของ Defender</li>
+                <li><strong>วิธีการวิเคราะห์:</strong> นิยมใช้การเปรียบเทียบค่าเทียบเท่ารายปี ($AW$) หรือวิธีกระแสเงินสดส่วนเพิ่ม</li>
+                <li><strong>สาเหตุการทดแทน:</strong> การเสื่อมสภาพทางกายภาพ, ความล้าสมัยทางเทคโนโลยี, สมรรถนะการผลิตไม่พอ</li>
+            </ul>
+        </div>
+
+        <!-- MODULE 9 -->
+        <div class="card" style="background:#fafafa; border-left: 4px solid #10b981;">
+            <h3 style="color:#059669; font-family:'Kanit'; margin-bottom:0.75rem;">บทที่ 9: ค่าเสื่อมราคาและภาษีเงินได้ (Depreciation & Tax)</h3>
+            <div style="font-size:0.86rem; line-height:1.7;">
+                <p><strong>1) รายได้สุทธิ (Net Income):</strong> $R - (FC + VC)$</p>
+                <p><strong>2) รายได้ที่ต้องเสียภาษี (Taxable Income, TI):</strong> $\text{Net Income} - D$ (หักค่าเสื่อมราคา)</p>
+                <p><strong>3) ภาษีเงินได้ (Income Tax, T):</strong> $TI \times \text{Tax Rate}(\%)$</p>
+                <p><strong>4) กำไรหลังหักภาษี (Net Profit):</strong> $TI - T = TI(1 - t)$</p>
+                <p><strong>5) กระแสเงินสดหลังหักภาษี (CFAT):</strong> $\text{Net Profit} + D$ (บวกค่าเสื่อมราคากลับเข้าสู่กระแสเงินสด เพราะไม่ใช่เงินสดจ่ายจริง)</p>
+            </div>
+        </div>
+
+        <!-- MODULE 10 -->
+        <div class="card" style="background:#fafafa; border-left: 4px solid #ec4899;">
+            <h3 style="color:#db2777; font-family:'Kanit'; margin-bottom:0.75rem;">บทที่ 10: ความเสี่ยงและต้นไม้ตัดสินใจ (Risk & Decision Trees)</h3>
+            <ul style="font-size:0.86rem; padding-left:1.2rem; line-height:1.65;">
+                <li><strong>มูลค่าคาดหมาย (Expected Monetary Value - EMV):</strong> $E(X) = \sum X_i \cdot P(X_i)$</li>
+                <li><strong>Decision Node (สี่เหลี่ยม $\square$):</strong> กิ่งที่เกิดจากการตัดสินใจของผู้วิเคราะห์ ให้เลือกกิ่งที่ให้ผลตอบแทนสูงสุด ($Max$) หรือต้นทุนต่ำสุด</li>
+                <li><strong>Chance Node (วงกลม $\bigcirc$):</strong> กิ่งที่เกิดจากความไม่แน่นอนของธรรมชาติ/ตลาด ให้คำนวณหาค่าเฉลี่ยถ่วงน้ำหนักความน่าจะเป็น ($EMV$)</li>
+                <li><strong>Rollback Procedure:</strong> การคำนวณย้อนหลังจากปลายกิ่งขวาสุดกลับมายังโคนต้นไม้ทางซ้าย</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SECTION 3: INTERACTIVE FACTOR CALCULATOR & CHEAT SHEET -->
+<section id="calculator" class="card" style="border-top: 4px solid var(--accent);">
+    <div class="section-header">
+        <div>
+            <h2 class="section-title">🧮 3. เครื่องคำนวณแฟกเตอร์ดอกเบี้ยและอัตราดอกเบี้ยแท้จริง (Interactive Calculator)</h2>
+            <p class="section-desc">คำนวณค่า Compound Interest Factors และ Effective Interest Rate ได้แบบทันทีโดยไม่ต้องเปิดเล่มตาราง</p>
+        </div>
+        <span class="badge badge-warning" style="font-size:0.9rem; padding:0.4rem 0.8rem;">เครื่องมือช่วยคำนวณอัตโนมัติ</span>
+    </div>
+
+    <!-- Calculator Grid -->
+    <div class="calculator-container">
+        <h3 style="font-family:'Kanit'; color:var(--primary-dark); margin-bottom:0.25rem;">⚡ เครื่องมือคำนวณแฟกเตอร์ทางการเงิน (Financial Factor Engine)</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted);">ป้อนอัตราดอกเบี้ยต่องวด ($i\%$) และจำนวนงวด ($n$) ระบบจะคำนวณค่าแฟกเตอร์มาตรฐานทั้ง 8 ตัวให้ทันที</p>
+        
+        <div class="calc-grid">
+            <div class="calc-input-group">
+                <label for="calc-i">อัตราดอกเบี้ยต่องวด $i$ (%)</label>
+                <input type="number" id="calc-i" value="8" step="0.25" min="0.01" max="100" oninput="calculateFactors()">
+            </div>
+            <div class="calc-input-group">
+                <label for="calc-n">จำนวนงวด $n$ (ปี หรือ งวด)</label>
+                <input type="number" id="calc-n" value="10" step="1" min="1" max="120" oninput="calculateFactors()">
+            </div>
+            <div class="calc-input-group">
+                <label for="calc-val">มูลค่าเงินฐาน (Base Amount, บาท)</label>
+                <input type="number" id="calc-val" value="10000" step="100" min="0" oninput="calculateFactors()">
+            </div>
+        </div>
+
+        <div class="calc-results-box">
+            <div class="calc-res-item">
+                <div class="calc-res-label">(F/P, i%, n) Compound Amount</div>
+                <div class="calc-res-val" id="res-fp">2.1589</div>
+                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">$F = P \times (F/P)$</div>
+            </div>
+            <div class="calc-res-item">
+                <div class="calc-res-label">(P/F, i%, n) Present Worth</div>
+                <div class="calc-res-val" id="res-pf">0.4632</div>
+                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">$P = F \times (P/F)$</div>
+            </div>
+            <div class="calc-res-item">
+                <div class="calc-res-label">(P/A, i%, n) Series Present</div>
+                <div class="calc-res-val" id="res-pa">6.7101</div>
+                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">$P = A \times (P/A)$</div>
+            </div>
+            <div class="calc-res-item">
+                <div class="calc-res-label">(A/P, i%, n) Capital Recovery</div>
+                <div class="calc-res-val" id="res-ap">0.1490</div>
+                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">$A = P \times (A/P)$</div>
+            </div>
+            <div class="calc-res-item">
+                <div class="calc-res-label">(F/A, i%, n) Series Compound</div>
+                <div class="calc-res-val" id="res-fa">14.4866</div>
+                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">$F = A \times (F/A)$</div>
+            </div>
+            <div class="calc-res-item">
+                <div class="calc-res-label">(A/F, i%, n) Sinking Fund</div>
+                <div class="calc-res-val" id="res-af">0.0690</div>
+                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">$A = F \times (A/F)$</div>
+            </div>
+            <div class="calc-res-item">
+                <div class="calc-res-label">(P/G, i%, n) Gradient Present</div>
+                <div class="calc-res-val" id="res-pg">25.9287</div>
+                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">$P = G \times (P/G)$</div>
+            </div>
+            <div class="calc-res-item">
+                <div class="calc-res-label">(A/G, i%, n) Gradient Uniform</div>
+                <div class="calc-res-val" id="res-ag">3.8713</div>
+                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">$A = G \times (A/G)$</div>
+            </div>
+        </div>
+
+        <div style="margin-top:1.5rem; padding-top:1.25rem; border-top:1px solid #cbd5e1;">
+            <h4 style="font-family:'Kanit'; font-size:1.05rem; color:var(--primary-dark); margin-bottom:0.5rem;">🔄 แปลงอัตราดอกเบี้ยที่ระบุเป็นอัตราดอกเบี้ยแท้จริง (Nominal to Effective Rate Converter)</h4>
+            <div class="calc-grid">
+                <div class="calc-input-group">
+                    <label for="calc-nom-r">อัตราดอกเบี้ยต่อปี $r$ (Nominal Rate %)</label>
+                    <input type="number" id="calc-nom-r" value="6" step="0.25" min="0.1" oninput="calculateEffective()">
+                </div>
+                <div class="calc-input-group">
+                    <label for="calc-comp-m">ความถี่ในการทบต้นต่อปี $m$</label>
+                    <select id="calc-comp-m" onchange="calculateEffective()">
+                        <option value="1">ปีละ 1 ครั้ง (Annually, m=1)</option>
+                        <option value="2">ปีละ 2 ครั้ง (Semiannually, m=2)</option>
+                        <option value="4">ปีละ 4 ครั้ง (Quarterly, m=4)</option>
+                        <option value="12" selected>ปีละ 12 ครั้ง (Monthly, m=12)</option>
+                        <option value="24">ปีละ 24 ครั้ง (Semimonthly, m=24)</option>
+                        <option value="365">ทุกวัน (Daily, m=365)</option>
+                        <option value="cont">ทบต้นต่อเนื่อง (Continuously, m=∞)</option>
+                    </select>
+                </div>
+                <div class="calc-input-group">
+                    <label>อัตราดอกเบี้ยที่แท้จริง $i_e$ (Effective Rate %)</label>
+                    <div id="res-eff-rate" style="font-size:1.4rem; font-weight:700; color:var(--primary); font-family:'JetBrains Mono'; padding-top:0.35rem;">6.1678%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- SECTION 4: PROBLEMS AND SOLUTIONS COLLECTION -->
+<section id="problems" class="card" style="border-top: 4px solid var(--primary-light);">
+    <div class="section-header">
+        <div>
+            <h2 class="section-title">📝 4. รวมโจทย์และเฉลยละเอียดครบทุกบท (27 Problems & Solutions)</h2>
+            <p class="section-desc">รวมโจทย์ แบบฝึกหัด และตัวอย่างคำนวณทั้งหมดจากสไลด์และเอกสาร พร้อมแสดงวิธีทำทีละขั้นตอนอย่างละเอียด</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+            <button class="solution-toggle-btn" onclick="toggleAllSolutions(true)">📂 เปิดเฉลยทั้งหมด</button>
+            <button class="solution-toggle-btn" style="background:#64748b;" onclick="toggleAllSolutions(false)">📁 ปิดเฉลยทั้งหมด</button>
+        </div>
+    </div>
+
+    <!-- Filter & Search Bar -->
+    <div class="filter-controls">
+        <input type="text" id="problemSearchInput" class="search-box" placeholder="🔍 ค้นหาโจทย์, สูตร, ตัวเลข, หรือหัวข้อ..." oninput="searchProblems()">
+        <button class="filter-btn active" onclick="filterCategory('all', this)">ทั้งหมด (27)</button>
+        <button class="filter-btn" onclick="filterCategory('cost', this)">ต้นทุน (2)</button>
+        <button class="filter-btn" onclick="filterCategory('bep', this)">จุดคุ้มทุน (3)</button>
+        <button class="filter-btn" onclick="filterCategory('tvm', this)">ดอกเบี้ย & TVM (9)</button>
+        <button class="filter-btn" onclick="filterCategory('pw', this)">มูลค่าปัจจุบัน PW (2)</button>
+        <button class="filter-btn" onclick="filterCategory('aw', this)">เงินรายปี AW (4)</button>
+        <button class="filter-btn" onclick="filterCategory('irr', this)">อัตราผลตอบแทน IRR (3)</button>
+        <button class="filter-btn" onclick="filterCategory('bc', this)">B/C Ratio (1)</button>
+        <button class="filter-btn" onclick="filterCategory('replacement', this)">การทดแทน (2)</button>
+        <button class="filter-btn" onclick="filterCategory('tax', this)">ภาษี & ค่าเสื่อม (1)</button>
+        <button class="filter-btn" onclick="filterCategory('decision', this)">ความเสี่ยง & Decision Tree (1)</button>
+    </div>
+
+    <div id="problemsList">
+
+        <div class="problem-card" data-category="cost" id="p1">
+            <div class="problem-header" onclick="toggleSolution('p1')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 1</span>
+                    <span class="badge badge-primary">COST</span>
+                    <span class="problem-title">การวิเคราะห์ต้นทุน: การลงทุนเพิ่มในต้นทุนคงที่เพื่อลดต้นทุนผันแปร</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 19 ข้อ 1)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> ต้นทุนรวมต่อปีเพื่อการผลิตสินค้า 6,400 หน่วย เป็นจำนวนเงิน 120,000 บาท จะต้องลงทุนเพิ่มเป็นต้นทุนคงที่ (Fixed Cost) ในจำนวนเงินเท่าใด จึงจะคุ้มทุนเพื่อการลดต้นทุนแปรผันลงได้หน่วยละ 4 บาท?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p1" onclick="toggleSolution('p1')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p1">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: วิเคราะห์ข้อมูลที่โจทย์กำหนด</div>
+    <ul style="padding-left:1.2rem;">
+        <li>ปริมาณการผลิตต่อปี $N = 6,400$ หน่วย</li>
+        <li>ต้นทุนรวมเดิม $TC_1 = 120,000$ บาท/ปี</li>
+        <li>ต้นทุนแปรผันต่อหน่วยลดลง $\Delta v = 4$ บาท/หน่วย</li>
+    </ul>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: คำนวณผลประโยชน์จากการประหยัดต้นทุนผันแปร (Cost Savings)</div>
+    <p>ผลรวมของการลดต้นทุนแปรผันต่อปีคำนวณได้จากปริมาณการผลิตคูณด้วยต้นทุนแปรผันที่ลดลงต่อหน่วย:</p>
+    $$\text{ผลประหยัดต้นทุนผันแปรต่อปี} = N \times \Delta v = 6,400 \times 4 = 25,600 \text{ บาท/ปี}$$
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 3: หาจุดคุ้มทุนของการลงทุนเพิ่มในต้นทุนคงที่ (Break-Even Fixed Cost)</div>
+    <p>เพื่อให้การลงทุนอยู่ในภาวะ "คุ้มทุน" พอดี ต้นทุนคงที่ที่เพิ่มขึ้นต่อปี ($\Delta FC$) จะต้องเท่ากับผลประหยัดต้นทุนผันแปรต่อปี:</p>
+    $$\Delta FC = 25,600 \text{ บาท/ปี}$$
+    <p style="font-size:0.9rem; color:#475569;">*หากคิดเป็นมูลค่าเงินลงทุนเริ่มต้นก้อนเดียว (P) ในระยะเวลา $n$ ปี ที่อัตราดอกเบี้ย $i$ จะได้ $P = \Delta FC \times (P/A, i, n)$ เช่น ถ้าอายุ 5 ปี ดอกเบี้ย 10% จะลงทุนได้สูงสุด $25,600(3.7908) = 97,044$ บาท</p>
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong> จะต้องลงทุนเพิ่มเป็นต้นทุนคงที่ได้สูงสุดไม่เกิน <span class="answer-highlight">25,600 บาท/ปี</span> จึงจะคุ้มทุน
+</div>
+<div class="pitfall-box">
+    ⚠️ <strong>ข้อควรระวัง:</strong> อย่าลืมดูหน่วยเวลา หากโจทย์ถามเป็นต้นทุนคงที่รายปีให้ตอบ 25,600 บาท/ปี แต่หากโจทย์กำหนดอายุการใช้งานและอัตราคิดลดมาให้ ต้องแปลงเป็นมูลค่าปัจจุบัน $P$ ด้วย $(P/A, i, n)$
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="cost" id="p2">
+            <div class="problem-header" onclick="toggleSolution('p2')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 2</span>
+                    <span class="badge badge-primary">COST</span>
+                    <span class="problem-title">การประมาณต้นทุน: วิธีสูง-ต่ำ (High-Low Method)</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 19 ข้อ 2)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> ต้นทุนในการผลิตสินค้าจำนวน 260 หน่วย คิดเป็นเงิน 32,000 บาท ถ้าทำการผลิต 340 หน่วย จะเสียค่าใช้จ่ายทั้งสิ้น 38,000 บาท<br>2.1) จงหาต้นทุนเฉลี่ยต่อหน่วยสำหรับการผลิต 260 หน่วยแรก<br>2.2) จงหาต้นทุนแปรผันต่อหน่วย<br>2.3) จงหาต้นทุนคงที่<br>2.4) ต้นทุนคงที่ต่อหน่วยสำหรับการผลิต 260 หน่วยแรก และ 340 หน่วย เป็นเท่าใด?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p2" onclick="toggleSolution('p2')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p2">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: คำนวณข้อ 2.1 ต้นทุนเฉลี่ยต่อหน่วยสำหรับการผลิต 260 หน่วยแรก ($AC_{260}$)</div>
+    $$AC_{260} = \frac{TC_{260}}{N_1} = \frac{32,000}{260} = 123.0769 \approx 123.08 \text{ บาท/หน่วย}$$
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: คำนวณข้อ 2.2 ต้นทุนแปรผันต่อหน่วย ($v$) ด้วย High-Low Method</div>
+    $$v = \frac{\Delta TC}{\Delta N} = \frac{38,000 - 32,000}{340 - 260} = \frac{6,000}{80} = 75.00 \text{ บาท/หน่วย}$$
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 3: คำนวณข้อ 2.3 ต้นทุนคงที่รวม ($FC$)</div>
+    <p>จากสมการ $TC = FC + v \cdot N \implies FC = TC - v \cdot N$</p>
+    <p>แทนค่าที่จุด 260 หน่วย: $FC = 32,000 - (75 \times 260) = 32,000 - 19,500 = 12,500 \text{ บาท}$</p>
+    <p>ตรวจคำตอบที่จุด 340 หน่วย: $FC = 38,000 - (75 \times 340) = 38,000 - 25,500 = 12,500 \text{ บาท}$ (ถูกต้องตรงกัน)</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 4: คำนวณข้อ 2.4 ต้นทุนคงที่ต่อหน่วย ($AFC$)</div>
+    <p>ที่ 260 หน่วย: $AFC_{260} = \frac{12,500}{260} = 48.0769 \approx 48.08 \text{ บาท/หน่วย}$</p>
+    <p>ที่ 340 หน่วย: $AFC_{340} = \frac{12,500}{340} = 36.7647 \approx 36.76 \text{ บาท/หน่วย}$</p>
+</div>
+<div class="answer-box">
+    ✅ <strong>สรุปคำตอบ:</strong><br>
+    2.1) ต้นทุนเฉลี่ย 260 หน่วยแรก = <span class="answer-highlight">123.08 บาท/หน่วย</span><br>
+    2.2) ต้นทุนแปรผันต่อหน่วย ($v$) = <span class="answer-highlight">75.00 บาท/หน่วย</span><br>
+    2.3) ต้นทุนคงที่รวม ($FC$) = <span class="answer-highlight">12,500 บาท</span><br>
+    2.4) ต้นทุนคงที่ต่อหน่วย: ที่ 260 หน่วย = <span class="answer-highlight">48.08 บาท/หน่วย</span>, ที่ 340 หน่วย = <span class="answer-highlight">36.76 บาท/หน่วย</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="bep" id="p3">
+            <div class="problem-header" onclick="toggleSolution('p3')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 3</span>
+                    <span class="badge badge-primary">BEP</span>
+                    <span class="problem-title">จุดคุ้มทุน: กลยุทธ์แก้ไขภาวะขาดทุนของโรงงาน</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 34-40 ตัวอย่างที่ 2)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> โรงงานแห่งหนึ่งผลิตสินค้าขาย 12,000 หน่วย ในราคาหน่วยละ 20 บาท ปัจจุบันตรวจสอบพบว่าต้นทุนคงที่ต่อเดือนเท่ากับ 90,000 บาท ต้นทุนแปรผันรวมเท่ากับ 192,000 บาท ทำให้โรงงานอยู่ในภาวะขาดทุน<br>สมควรที่จะลดค่าใช้จ่ายหรือเพิ่มรายได้อย่างไร โดยปริมาณการขายยังคงเดิมที่ 12,000 หน่วย เพื่อให้อย่างน้อยอยู่ในภาวะคุ้มทุน?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p3" onclick="toggleSolution('p3')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p3">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: ตรวจสอบสถานะผลการดำเนินงานปัจจุบัน</div>
+    <p>ต้นทุนผันแปรต่อหน่วย: $v = 192,000 / 12,000 = 16.00$ บาท/หน่วย</p>
+    <p>รายได้รวม: $TR = 12,000 \times 20 = 240,000$ บาท</p>
+    <p>ต้นทุนรวม: $TC = 90,000 + 192,000 = 282,000$ บาท</p>
+    <p>ผลกำไรสุทธิปัจจุบัน: $\Pi = 240,000 - 282,000 = -42,000$ บาท (<strong>ขาดทุนเดือนละ 42,000 บาท</strong>)</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: แนวทางที่ 1 - ลดเฉพาะต้นทุนคงที่ ($FC$) โดยราคาและต้นทุนผันแปรเท่าเดิม</div>
+    <p>ที่จุดคุ้มทุน $\Pi = 0 \implies N(p - v) - FC = 0$</p>
+    $$FC^* = N(p - v) = 12,000 \times (20 - 16) = 48,000 \text{ บาท}$$
+    <p>นั่นคือ ต้องปรับลดต้นทุนคงที่ลง: $90,000 - 48,000 = 42,000$ บาท (ลดลง 46.67%)</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 3: แนวทางที่ 2 - ลดเฉพาะต้นทุนแปรผันต่อหน่วย ($v$) โดยราคาและต้นทุนคงที่เท่าเดิม</div>
+    $$v^* = p - \frac{FC}{N} = 20 - \frac{90,000}{12,000} = 20 - 7.50 = 12.50 \text{ บาท/หน่วย}$$
+    <p>นั่นคือ ต้องปรับลดต้นทุนแปรผันลง: $16.00 - 12.50 = 3.50$ บาท/หน่วย</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 4: แนวทางที่ 3 - ปรับขึ้นราคาขายต่อหน่วย ($p$) โดยต้นทุนคงที่และต้นทุนผันแปรเท่าเดิม</div>
+    $$p^* = v + \frac{FC}{N} = 16 + \frac{90,000}{12,000} = 16 + 7.50 = 23.50 \text{ บาท/หน่วย}$$
+    <p>นั่นคือ ต้องปรับขึ้นราคาขายอย่างน้อย: $23.50 - 20.00 = 3.50$ บาท/หน่วย</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 5: กรณีมาตรการร่วม (ลดทั้ง FC และลด VC พร้อมกัน)</div>
+    <p>หากลดต้นทุนคงที่เหลือ 48,000 บาท และลดต้นทุนแปรผันเหลือ 12.50 บาท:</p>
+    <ul style="padding-left:1.2rem;">
+        <li>จุดคุ้มทุนใหม่: $N^* = \frac{48,000}{20 - 12.50} = \frac{48,000}{7.50} = 6,400 \text{ หน่วย}$</li>
+        <li>กำไรที่ยอดขาย 12,000 หน่วย: $\Pi = 12,000(7.50) - 48,000 = +42,000 \text{ บาท}$ (พลิกกลับมามีกำไรทันที)</li>
+    </ul>
+</div>
+<div class="answer-box">
+    ✅ <strong>สรุปทางเลือกเชิงวิศวกรรมการจัดการ:</strong><br>
+    1) ลดต้นทุนคงที่ลงเหลือไม่เกิน <span class="answer-highlight">48,000 บาท</span> (ลดลง 42,000 บาท)<br>
+    2) หรือลดต้นทุนแปรผันลงเหลือไม่เกิน <span class="answer-highlight">12.50 บาท/หน่วย</span> (ลดลง 3.50 บาท/หน่วย)<br>
+    3) หรือปรับขึ้นราคาขายเป็นไม่ต่ำกว่า <span class="answer-highlight">23.50 บาท/หน่วย</span> (ขึ้น 3.50 บาท/หน่วย)
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="bep" id="p4">
+            <div class="problem-header" onclick="toggleSolution('p4')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 4</span>
+                    <span class="badge badge-primary">BEP</span>
+                    <span class="problem-title">จุดคุ้มทุนสินค้าหลายชนิด: ร้านขายรองเท้า 4 ประเภท</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 49 ข้อ 1)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> ในการลงทุนเปิดร้านขายรองเท้า ต้นทุนคงที่สำหรับการตกแต่งหน้าร้านและอื่นๆ คิดเป็นจำนวนเงิน 100,000 บาท รายละเอียดรองเท้าที่มีขาย 4 ประเภทดังนี้:<br>- รองเท้าสุภาพบุรุษ: %ราคาขายตั้งเพิ่มขึ้นจากต้นทุน 20%, สัดส่วนยอดขาย 40%<br>- รองเท้าสุภาพสตรี: %ราคาขายตั้งเพิ่มขึ้นจากต้นทุน 30%, สัดส่วนยอดขาย 25%<br>- รองเท้าเด็ก: %ราคาขายตั้งเพิ่มขึ้นจากต้นทุน 35%, สัดส่วนยอดขาย 25%<br>- รองเท้าอื่นๆ: %ราคาขายตั้งเพิ่มขึ้นจากต้นทุน 20%, สัดส่วนยอดขาย 10%<br>ถ้าปริมาณขายเป็นเงิน 500,000 บาทต่อปี จุดคุ้มทุนจะเป็นเท่าใด และกำไรเป็นเท่าไร? และถ้าขายได้เพียง 400,000 บาท กำไรเป็นเท่าไร?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p4" onclick="toggleSolution('p4')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p4">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: การแปลง Markup บนต้นทุนเป็น Contribution Margin บนยอดขาย ($MS_i$)</div>
+    <p>เนื่องจากโจทย์กำหนด "%ราคาขายตั้งเพิ่มขึ้นจากต้นทุน" ($m_i$): $Price = Cost \times (1 + m_i) \implies Cost = Price / (1 + m_i)$</p>
+    <p>ส่วนผลได้ต่อราคาขายคำนวณจาก: $MS_i = \frac{Price - Cost}{Price} = \frac{m_i}{1 + m_i}$</p>
+    <ul style="padding-left:1.2rem;">
+        <li>ชาย ($m=20\%$): $MS_1 = 0.20 / 1.20 = 16.67\%$, สัดส่วน $IS_1 = 40\% \implies 16.67\% \times 0.40 = 6.667\%$</li>
+        <li>หญิง ($m=30\%$): $MS_2 = 0.30 / 1.30 = 23.08\%$, สัดส่วน $IS_2 = 25\% \implies 23.08\% \times 0.25 = 5.769\%$</li>
+        <li>เด็ก ($m=35\%$): $MS_3 = 0.35 / 1.35 = 25.93\%$, สัดส่วน $IS_3 = 25\% \implies 25.93\% \times 0.25 = 6.481\%$</li>
+        <li>อื่นๆ ($m=20\%$): $MS_4 = 0.20 / 1.20 = 16.67\%$, สัดส่วน $IS_4 = 10\% \implies 16.67\% \times 0.10 = 1.667\%$</li>
+    </ul>
+    <p><strong>ส่วนผลได้เฉลี่ยถ่วงน้ำหนัก ($AMC$):</strong> $AMC = 6.667\% + 5.769\% + 6.481\% + 1.667\% = 20.584\% \approx 20.59\%$</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: คำนวณจุดคุ้มทุน (Break-Even Sales Revenue, $R^*$)</div>
+    $$R^* = \frac{FC}{AMC} = \frac{100,000}{0.20584} \approx 485,814 \text{ บาท}$$
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 3: คำนวณกำไรที่ยอดขาย 500,000 บาท และ 400,000 บาท</div>
+    <p><strong>กรณียอดขาย 500,000 บาท:</strong></p>
+    $$\Pi = (500,000 \times 0.20584) - 100,000 = 102,920 - 100,000 = +2,920 \text{ บาท (กำไร)}$$
+    <p><strong>กรณียอดขาย 400,000 บาท:</strong></p>
+    $$\Pi = (400,000 \times 0.20584) - 100,000 = 82,336 - 100,000 = -17,664 \text{ บาท (ขาดทุน)}$$
+</div>
+<div class="callout-box" style="font-size:0.88rem; background:#f8fafc; border-color:#94a3b8;">
+    ℹ️ <em>หมายเหตุ:</em> หากผู้สอนใช้การประมาณการแบบง่ายโดยถือว่า % เพิ่มขึ้นคือ % ส่วนผลได้โดยตรง ($AMC = 0.20(0.40) + 0.30(0.25) + 0.35(0.25) + 0.20(0.10) = 26.25\%$):<br>
+    จุดคุ้มทุนจะเท่ากับ $100,000 / 0.2625 = 380,952$ บาท | กำไรที่ 500k = 31,250 บาท | กำไรที่ 400k = 5,000 บาท
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ (ตามทฤษฎีทางเศรษฐศาสตร์):</strong><br>
+    - จุดคุ้มทุน = <span class="answer-highlight">485,814 บาท</span><br>
+    - กำไรเมื่อขายได้ 500,000 บาท = <span class="answer-highlight">+2,920 บาท</span><br>
+    - ขาดทุนเมื่อขายได้ 400,000 บาท = <span class="answer-highlight">-17,664 บาท</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="bep" id="p5">
+            <div class="problem-header" onclick="toggleSolution('p5')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 5</span>
+                    <span class="badge badge-primary">BEP</span>
+                    <span class="problem-title">จุดคุ้มทุน: การตัดสินใจยกเลิกสายผลิตภัณฑ์ที่ขาดทุน</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 50-51 ข้อ 2)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> บริษัทขายผลิตภัณฑ์ 4 ชนิด มียอดขายรวมปีละ 2,000,000 บาท ดังนี้:<br>- ก: ยอดขาย 10%, ส่วนผลได้ 45%, FC = 70,000, กำไร = 20,000 บาท<br>- ข: ยอดขาย 20%, ส่วนผลได้ 40%, FC = 180,000, กำไร = -20,000 บาท (ขาดทุน)<br>- ค: ยอดขาย 30%, ส่วนผลได้ 40%, FC = 210,000, กำไร = 30,000 บาท<br>- ง: ยอดขาย 40%, ส่วนผลได้ 35%, FC = 220,000, กำไร = 60,000 บาท<br>บริษัทพิจารณาจะเลิกขายผลิตภัณฑ์ (ข) โดยคาดว่าจะมียอดขายเหลือ 1,800,000 บาท และมีสัดส่วนใหม่คือ ก (15%, FC 100k), ค (35%, FC 250k), ง (50%, FC 290k) โดยส่วนผลได้ของ ค ขยับเป็น 45%<br>(ก) บริษัทควรจะเลิกขายผลิตภัณฑ์ (ข) หรือไม่?<br>(ข) จุดคุ้มทุนสำหรับการขาย 4 ชนิด และ 3 ชนิด เป็นเท่าไร?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p5" onclick="toggleSolution('p5')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p5">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: วิเคราะห์สถานการณ์เดิม (ขาย 4 ผลิตภัณฑ์, ยอดขาย 2,000,000 บาท)</div>
+    <ul style="padding-left:1.2rem;">
+        <li>ก: ยอดขาย $200,000$, ส่วนผลได้ $45\% \implies$ ได้เงิน $90,000$ บาท</li>
+        <li>ข: ยอดขาย $400,000$, ส่วนผลได้ $40\% \implies$ ได้เงิน $160,000$ บาท</li>
+        <li>ค: ยอดขาย $600,000$, ส่วนผลได้ $40\% \implies$ ได้เงิน $240,000$ บาท</li>
+        <li>ง: ยอดขาย $800,000$, ส่วนผลได้ $35\% \implies$ ได้เงิน $280,000$ บาท</li>
+    </ul>
+    <p>ส่วนผลได้รวม $= 90,000 + 160,000 + 240,000 + 280,000 = 770,000$ บาท</p>
+    <p>ต้นทุนคงที่รวม $= 70,000 + 180,000 + 210,000 + 220,000 = 680,000$ บาท</p>
+    <p><strong>กำไรสุทธิรวมเดิม:</strong> $\Pi_{เดิม} = 770,000 - 680,000 = +90,000 \text{ บาท}$</p>
+    <p>$AMC_{เดิม} = 770,000 / 2,000,000 = 38.50\%$</p>
+    <p>จุดคุ้มทุนเดิม: $R^*_{4} = 680,000 / 0.385 = 1,766,234 \text{ บาท}$</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: วิเคราะห์สถานการณ์ใหม่ (เลิกขาย ข, ยอดขาย 1,800,000 บาท)</div>
+    <ul style="padding-left:1.2rem;">
+        <li>ก ($15\%$ ของ $1.8M = 270,000$): ส่วนผลได้ $45\% \implies 121,500$ บาท</li>
+        <li>ค ($35\%$ ของ $1.8M = 630,000$): ส่วนผลได้ $45\% \implies 283,500$ บาท</li>
+        <li>ง ($50\%$ ของ $1.8M = 900,000$): ส่วนผลได้ $35\% \implies 315,000$ บาท</li>
+    </ul>
+    <p>ส่วนผลได้รวม $= 121,500 + 283,500 + 315,000 = 720,000$ บาท</p>
+    <p>ต้นทุนคงที่รวมใหม่ $= 100,000 + 250,000 + 290,000 = 640,000$ บาท</p>
+    <p><strong>กำไรสุทธิรวมใหม่:</strong> $\Pi_{ใหม่} = 720,000 - 640,000 = +80,000 \text{ บาท}$</p>
+    <p>$AMC_{ใหม่} = 720,000 / 1,800,000 = 40.00\%$</p>
+    <p>จุดคุ้มทุนใหม่: $R^*_{3} = 640,000 / 0.40 = 1,600,000 \text{ บาท}$</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 3: สรุปเปรียบเทียบและการตัดสินใจ</div>
+    <p>เมื่อเลิกขายผลิตภัณฑ์ ข กำไรสุทธิของบริษัทลดลงจาก 90,000 บาท เหลือ 80,000 บาท (<strong>กำไรหายไป 10,000 บาท</strong>) เนื่องจากผลิตภัณฑ์ ข สร้างส่วนผลได้ถึง 160,000 บาท แต่ต้นทุนคงที่ลดลงเพียง $680,000 - 640,000 = 40,000$ บาทเท่านั้น</p>
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    (ก) บริษัท <span class="answer-highlight">ไม่ควรเลิกขายผลิตภัณฑ์ (ข)</span> เพราะทำให้กำไรสุทธิรวมลดลง 10,000 บาท<br>
+    (ข) จุดคุ้มทุนเมื่อขาย 4 ชนิด = <span class="answer-highlight">1,766,234 บาท</span>, จุดคุ้มทุนเมื่อขาย 3 ชนิด = <span class="answer-highlight">1,600,000 บาท</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="tvm" id="p6">
+            <div class="problem-header" onclick="toggleSolution('p6')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 6</span>
+                    <span class="badge badge-primary">TVM</span>
+                    <span class="problem-title">อัตราดอกเบี้ย: การคำนวณอัตราดอกเบี้ยที่แท้จริง (Effective Interest Rate)</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 91 ข้อ 1)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> อัตราดอกเบี้ยต่อปีระบุ (Nominal Interest Rate) 6% จะคิดเทียบเท่าเป็นอัตราดอกเบี้ยที่แท้จริง (Effective Interest Rate) เท่าใด เมื่อมีการคิดทบต้นบ่อยครั้งดังนี้:<br>1.1) 2 ครั้ง (Semiannually)<br>1.2) 4 ครั้ง (Quarterly)<br>1.3) 12 ครั้ง (Monthly)<br>1.4) 24 ครั้ง (Semimonthly)<br>1.5) แบบต่อเนื่อง (Continuously)
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p6" onclick="toggleSolution('p6')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p6">
+                    
+<div class="step-block">
+    <div class="step-title">สูตรการคำนวณอัตราดอกเบี้ยที่แท้จริง ($i_e$)</div>
+    $$i_e = \left(1 + \frac{r}{m}\right)^m - 1, \quad i_e (\text{ต่อเนื่อง}) = e^r - 1$$
+</div>
+<div class="step-block">
+    <div class="step-title">การคำนวณทีละข้อย่อย ($r = 0.06$)</div>
+    <p>1.1) ทบต้นปีละ 2 ครั้ง ($m = 2$):</p>
+    $$i_e = (1 + 0.06/2)^2 - 1 = (1.03)^2 - 1 = 0.06090 = 6.0900\%$$
+    <p>1.2) ทบต้นปีละ 4 ครั้ง ($m = 4$):</p>
+    $$i_e = (1 + 0.06/4)^4 - 1 = (1.015)^4 - 1 = 0.06136 = 6.1364\%$$
+    <p>1.3) ทบต้นปีละ 12 ครั้ง ($m = 12$):</p>
+    $$i_e = (1 + 0.06/12)^{12} - 1 = (1.005)^{12} - 1 = 0.06168 = 6.1678\%$$
+    <p>1.4) ทบต้นปีละ 24 ครั้ง ($m = 24$):</p>
+    $$i_e = (1 + 0.06/24)^{24} - 1 = (1.0025)^{24} - 1 = 0.06176 = 6.1757\%$$
+    <p>1.5) ทบต้นแบบต่อเนื่อง ($m \to \infty$):</p>
+    $$i_e = e^{0.06} - 1 = 1.0618365 - 1 = 0.06184 = 6.1837\%$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    1.1) ทบต้น 2 ครั้ง = <span class="answer-highlight">6.0900%</span><br>
+    1.2) ทบต้น 4 ครั้ง = <span class="answer-highlight">6.1364%</span><br>
+    1.3) ทบต้น 12 ครั้ง = <span class="answer-highlight">6.1678%</span><br>
+    1.4) ทบต้น 24 ครั้ง = <span class="answer-highlight">6.1757%</span><br>
+    1.5) ทบต้นต่อเนื่อง = <span class="answer-highlight">6.1837%</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="tvm" id="p7">
+            <div class="problem-header" onclick="toggleSolution('p7')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 7</span>
+                    <span class="badge badge-primary">TVM</span>
+                    <span class="problem-title">การเปิดตารางดอกเบี้ย: การประมาณค่าแฟกเตอร์ด้วยการเชื่อมโยงเชิงเส้น (Interpolation)</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 92 ข้อ 2)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> จงคำนวณค่าของแฟกเตอร์ต่อไปนี้ โดยใช้วิธีการเชื่อมโยงระหว่างจุด (Interpolation):<br>2.1) (CAF, 5.5%, 12)<br>2.2) (SFF, 6%, 44)<br>2.3) (SPWF, 3.25%, 12)<br>2.4) (SCAF, 8%, 39)
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p7" onclick="toggleSolution('p7')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p7">
+                    
+<div class="step-block">
+    <div class="step-title">หลักการเชิงเส้น (Linear Interpolation)</div>
+    $$Factor(x) = Factor_1 + \frac{x - x_1}{x_2 - x_1} (Factor_2 - Factor_1)$$
+</div>
+<div class="step-block">
+    <div class="step-title">2.1) (CAF, 5.5%, 12) หรือ $(F/P, 5.5\%, 12)$</div>
+    <p>เปิดตารางที่ $n = 12$ ระหว่าง $i = 5\%$ และ $6\%$:</p>
+    <p>$(F/P, 5\%, 12) = 1.7959$, $(F/P, 6\%, 12) = 2.0122$</p>
+    $$Factor = 1.7959 + \frac{5.5 - 5.0}{6.0 - 5.0} (2.0122 - 1.7959) = 1.7959 + 0.10815 = 1.9041$$
+    <p style="font-size:0.85rem; color:#64748b;">(ตรวจสอบด้วยสูตรตรง $(1.055)^{12} = 1.9012$)</p>
+</div>
+<div class="step-block">
+    <div class="step-title">2.2) (SFF, 6%, 44) หรือ $(A/F, 6\%, 44)$</div>
+    <p>เปิดตารางที่ $i = 6\%$ ระหว่าง $n = 40$ และ $n = 45$:</p>
+    <p>$(A/F, 6\%, 40) = 0.00646$, $(A/F, 6\%, 45) = 0.00470$</p>
+    $$Factor = 0.00646 + \frac{44 - 40}{45 - 40} (0.00470 - 0.00646) = 0.00646 - 0.001408 = 0.00505$$
+</div>
+<div class="step-block">
+    <div class="step-title">2.3) (SPWF, 3.25%, 12) หรือ $(P/A, 3.25\%, 12)$</div>
+    <p>เปิดตารางที่ $n = 12$ ระหว่าง $i = 3\%$ และ $i = 4\%$:</p>
+    <p>$(P/A, 3\%, 12) = 9.9540$, $(P/A, 4\%, 12) = 9.3851$</p>
+    $$Factor = 9.9540 + 0.25 \times (9.3851 - 9.9540) = 9.9540 - 0.1422 = 9.8118$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    2.1) (CAF, 5.5%, 12) = <span class="answer-highlight">1.9041</span><br>
+    2.2) (SFF, 6%, 44) = <span class="answer-highlight">0.00505</span><br>
+    2.3) (SPWF, 3.25%, 12) = <span class="answer-highlight">9.8118</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="tvm" id="p8">
+            <div class="problem-header" onclick="toggleSolution('p8')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 8</span>
+                    <span class="badge badge-primary">TVM</span>
+                    <span class="problem-title">มูลค่าเงินตามเวลา: การหาเงินรวมอนาคต $F$ จากเงินต้น $P$</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 93 ข้อ 3)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> จงหาเงินรวมในการกู้ยืมต่อไปนี้:<br>3.1) เงินต้น 7,200 บาท ระยะเวลา 8 ปี อัตราดอกเบี้ย 9%<br>3.2) เงินต้น 675 บาท ระยะเวลา 11 ปี อัตราดอกเบี้ย 4% คิดปีละ 2 ครั้ง<br>3.3) เงินต้น 3,500 บาท ระยะเวลา 41 ปี อัตราดอกเบี้ย 7%<br>3.4) เงินต้น 11,000 บาท ระยะเวลา 7 ปี อัตราดอกเบี้ย 8% คิดปีละ 4 ครั้ง
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p8" onclick="toggleSolution('p8')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p8">
+                    
+<div class="step-block">
+    <div class="step-title">สูตรหลัก: $F = P(F/P, i, n) = P(1 + i)^n$</div>
+    <p><strong>3.1) $P = 7,200, n = 8, i = 9\%$:</strong></p>
+    $$F = 7,200 \times (1.09)^8 = 7,200 \times 1.99256 = 14,346.45 \text{ บาท}$$
+    <p><strong>3.2) $P = 675$, ดอกเบี้ย 4% คิดปีละ 2 ครั้ง $\implies i = 4\%/2 = 2\%$, งวด $n = 11 \times 2 = 22$:</strong></p>
+    $$F = 675 \times (1.02)^{22} = 675 \times 1.54598 = 1,043.54 \text{ บาท}$$
+    <p><strong>3.3) $P = 3,500, n = 41, i = 7\%$:</strong></p>
+    $$F = 3,500 \times (1.07)^{41} = 3,500 \times 16.0380 = 56,133.01 \text{ บาท}$$
+    <p><strong>3.4) $P = 11,000$, ดอกเบี้ย 8% คิดปีละ 4 ครั้ง $\implies i = 8\%/4 = 2\%$, งวด $n = 7 \times 4 = 28$:</strong></p>
+    $$F = 11,000 \times (1.02)^{28} = 11,000 \times 1.74102 = 19,151.27 \text{ บาท}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    3.1) = <span class="answer-highlight">14,346.45 บาท</span> | 3.2) = <span class="answer-highlight">1,043.54 บาท</span><br>
+    3.3) = <span class="answer-highlight">56,133.01 บาท</span> | 3.4) = <span class="answer-highlight">19,151.27 บาท</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="tvm" id="p9">
+            <div class="problem-header" onclick="toggleSolution('p9')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 9</span>
+                    <span class="badge badge-primary">TVM</span>
+                    <span class="problem-title">มูลค่าเงินตามเวลา: การหามูลค่าปัจจุบัน $P$ จากเงินรวมอนาคต $F$</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 94 ข้อ 4)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> จงหาเงินต้นในกรณีต่อไปนี้ ($P/F, i, n$):<br>4.1) เงินรวม 4,300 บาท ระยะเวลา 6 ปี อัตราดอกเบี้ย 9%<br>4.2) เงินรวม 1,700 บาท ระยะเวลา 12 ปี อัตราดอกเบี้ย 6% คิดปีละ 12 ครั้ง<br>4.3) เงินรวม 6,200 บาท ระยะเวลา 15 ปี อัตราดอกเบี้ย 12%<br>4.4) เงินรวม 6,200 บาท ระยะเวลา 15 ปี อัตราดอกเบี้ย 12% คิดปีละ 12 ครั้ง
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p9" onclick="toggleSolution('p9')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p9">
+                    
+<div class="step-block">
+    <div class="step-title">สูตรหลัก: $P = F(P/F, i, n) = F(1 + i)^{-n}$</div>
+    <p><strong>4.1) $F = 4,300, n = 6, i = 9\%$:</strong></p>
+    $$P = 4,300 \times (1.09)^{-6} = 4,300 \times 0.59627 = 2,563.95 \text{ บาท}$$
+    <p><strong>4.2) $F = 1,700$, ดอกเบี้ย 6% ทบต้น 12 ครั้ง/ปี $\implies i = 6\%/12 = 0.5\%$, $n = 12 \times 12 = 144$:</strong></p>
+    $$P = 1,700 \times (1.005)^{-144} = 1,700 \times 0.48763 = 828.97 \text{ บาท}$$
+    <p><strong>4.3) $F = 6,200, n = 15, i = 12\%$:</strong></p>
+    $$P = 6,200 \times (1.12)^{-15} = 6,200 \times 0.18270 = 1,132.72 \text{ บาท}$$
+    <p><strong>4.4) $F = 6,200$, ดอกเบี้ย 12% ทบต้น 12 ครั้ง/ปี $\implies i = 1\%$, $n = 15 \times 12 = 180$:</strong></p>
+    $$P = 6,200 \times (1.01)^{-180} = 6,200 \times 0.16678 = 1,034.07 \text{ บาท}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    4.1) = <span class="answer-highlight">2,563.95 บาท</span> | 4.2) = <span class="answer-highlight">828.97 บาท</span><br>
+    4.3) = <span class="answer-highlight">1,132.72 บาท</span> | 4.4) = <span class="answer-highlight">1,034.07 บาท</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="tvm" id="p10">
+            <div class="problem-header" onclick="toggleSolution('p10')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 10</span>
+                    <span class="badge badge-primary">TVM</span>
+                    <span class="problem-title">มูลค่าเงินตามเวลา: การหามูลค่าปัจจุบัน $P$ จากเงินงวดเท่ากันรายปี $A$</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 95 ข้อ 5)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> จงหาค่าเทียบเท่าของเงินต้นเมื่อมีการชำระหนี้เป็นงวดๆ ละเท่าๆ กันดังต่อไปนี้ ($P/A, i, n$):<br>5.1) ปีละ 3,500 บาท ระยะเวลา 12 ปี อัตราดอกเบี้ย 8%<br>5.2) ปีละ 300 บาท ระยะเวลา 38 ปี อัตราดอกเบี้ย 9%<br>5.3) เดือนละ 1,000 บาท ระยะเวลา 4 ปี อัตราดอกเบี้ย 9% คิดปีละ 12 ครั้ง<br>5.4) 5,000 บาททุกๆ 6 เดือน ระยะเวลา 6 ปี อัตราดอกเบี้ย 10% คิดปีละ 2 ครั้ง
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p10" onclick="toggleSolution('p10')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p10">
+                    
+<div class="step-block">
+    <div class="step-title">สูตรหลัก: $P = A(P/A, i, n) = A \left[\frac{(1+i)^n - 1}{i(1+i)^n}\right]$</div>
+    <p><strong>5.1) $A = 3,500, n = 12, i = 8\%$:</strong></p>
+    $$P = 3,500 \times (P/A, 8\%, 12) = 3,500 \times 7.53608 = 26,376.28 \text{ บาท}$$
+    <p><strong>5.2) $A = 300, n = 38, i = 9\%$:</strong></p>
+    $$P = 300 \times (P/A, 9\%, 38) = 300 \times 10.6865 = 3,205.95 \text{ บาท}$$
+    <p><strong>5.3) $A = 1,000$, ทบต้นรายเดือน $i = 9\%/12 = 0.75\%$, $n = 4 \times 12 = 48$:</strong></p>
+    $$P = 1,000 \times (P/A, 0.75\%, 48) = 1,000 \times 40.1104 = 40,110.39 \text{ บาท}$$
+    <p><strong>5.4) $A = 5,000$, จ่ายทุก 6 เดือน $i = 10\%/2 = 5\%$, $n = 6 \times 2 = 12$:</strong></p>
+    $$P = 5,000 \times (P/A, 5\%, 12) = 5,000 \times 8.86325 = 44,316.26 \text{ บาท}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    5.1) = <span class="answer-highlight">26,376.28 บาท</span> | 5.2) = <span class="answer-highlight">3,205.95 บาท</span><br>
+    5.3) = <span class="answer-highlight">40,110.39 บาท</span> | 5.4) = <span class="answer-highlight">44,316.26 บาท</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="tvm" id="p11">
+            <div class="problem-header" onclick="toggleSolution('p11')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 11</span>
+                    <span class="badge badge-primary">TVM</span>
+                    <span class="problem-title">มูลค่าเงินตามเวลา: การชำระคืนเงินกู้เป็นงวดเท่าๆ กัน ($A/P, i, n$)</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 98 ข้อ 8)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> จะต้องจ่ายชำระหนี้เป็นงวดๆ ละเท่าๆ กันเท่าใด ในการกู้ยืมต่อไปนี้:<br>8.1) 3,000 บาท ชำระคืนภายใน 5 ปี อัตราดอกเบี้ย 4% ชำระทุกสิ้นปี<br>8.2) 16,000 บาท ชำระคืนทุกๆ 6 เดือน เป็นเวลา 8 ปี อัตราดอกเบี้ย 10%<br>8.3) 37,000 บาท ชำระคืนทุกๆ เดือน เป็นเวลา 5 ปี อัตราดอกเบี้ย 9%<br>8.4) 8,000 บาท ชำระคืนทุกๆ 3 เดือน เป็นเวลา 3 ปี อัตราดอกเบี้ย 12%
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p11" onclick="toggleSolution('p11')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p11">
+                    
+<div class="step-block">
+    <div class="step-title">สูตรหลัก: $A = P(A/P, i, n) = P \left[\frac{i(1+i)^n}{(1+i)^n - 1}\right]$</div>
+    <p><strong>8.1) $P = 3,000, n = 5, i = 4\%$:</strong></p>
+    $$A = 3,000 \times (A/P, 4\%, 5) = 3,000 \times 0.22463 = 673.88 \text{ บาท/ปี}$$
+    <p><strong>8.2) $P = 16,000, i = 10\%/2 = 5\%$, $n = 8 \times 2 = 16$:</strong></p>
+    $$A = 16,000 \times (A/P, 5\%, 16) = 16,000 \times 0.09227 = 1,476.32 \text{ บาท/งวด}$$
+    <p><strong>8.3) $P = 37,000, i = 9\%/12 = 0.75\%$, $n = 5 \times 12 = 60$:</strong></p>
+    $$A = 37,000 \times (A/P, 0.75\%, 60) = 37,000 \times 0.020758 = 768.06 \text{ บาท/เดือน}$$
+    <p><strong>8.4) $P = 8,000, i = 12\%/4 = 3\%$, $n = 3 \times 4 = 12$:</strong></p>
+    $$A = 8,000 \times (A/P, 3\%, 12) = 8,000 \times 0.100462 = 803.70 \text{ บาท/ไตรมาส}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    8.1) = <span class="answer-highlight">673.88 บาท/ปี</span> | 8.2) = <span class="answer-highlight">1,476.32 บาท/งวด</span><br>
+    8.3) = <span class="answer-highlight">768.06 บาท/เดือน</span> | 8.4) = <span class="answer-highlight">803.70 บาท/ไตรมาส</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="tvm" id="p12">
+            <div class="problem-header" onclick="toggleSolution('p12')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 12</span>
+                    <span class="badge badge-primary">TVM</span>
+                    <span class="problem-title">มูลค่าเงินตามเวลา: เวลาเพิ่มเป็น 2 เท่า & ค่าบำรุงรักษาแบบเกรเดียนต์</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 99 ข้อ 9 & 10)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> ข้อ 9) จะเป็นเวลานานเท่าใด ค่าของเงินรวมจึงจะเป็นสองเท่าของเงินต้น เมื่อคิดอัตราดอกเบี้ยต่อปีเป็น 5% และ 10%?<br>ข้อ 10) สมมุติว่าค่าซ่อมบำรุงเครื่องจักรตัวหนึ่งในปลายปีที่สองเป็น 100 บาท ปลายปีที่สามเป็น 200 บาท และปลายปีที่สี่เป็น 300 บาท เพิ่มขึ้นปีละ 100 บาท จนถึง 900 บาทในปลายปีที่สิบ ต้องการเฉลี่ยค่าซ่อมบำรุงเหล่านี้ให้เป็นค่าเทียบเท่ารายปีเท่าๆ กันตลอด 10 ปี ด้วยอัตราดอกเบี้ย 9% จงหาค่าเฉลี่ยนี้
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p12" onclick="toggleSolution('p12')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p12">
+                    
+<div class="step-block">
+    <div class="step-title">ตอนที่ 1: คำนวณเวลาเงินรวมเป็น 2 เท่า ($F = 2P \implies (1+i)^n = 2$)</div>
+    $$n = \frac{\ln(2)}{\ln(1 + i)}$$
+    <p>ที่ดอกเบี้ย $i = 5\%$: $n = \ln(2) / \ln(1.05) = 0.69315 / 0.04879 = 14.21 \text{ ปี}$ (กฎ 72: $72/5 = 14.4$ ปี)</p>
+    <p>ที่ดอกเบี้ย $i = 10\%$: $n = \ln(2) / \ln(1.10) = 0.69315 / 0.09531 = 7.27 \text{ ปี}$ (กฎ 72: $72/10 = 7.2$ ปี)</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ตอนที่ 2: แปลงกระแสเงินสดเกรเดียนต์เลขคณิต (Arithmetic Gradient) เป็นเงินรายปี ($A/G$)</div>
+    <p>พิจารณากระแสเงินสดค่าซ่อมบำรุง:</p>
+    <p>ปี 1: $0$ บาท | ปี 2: $100$ บาท | ปี 3: $200$ บาท ... ปี 10: $900$ บาท</p>
+    <p>นี่คือ Gradient Series แท้จริงที่มี $A_1 = 0$, $G = 100$ บาท/ปี, $n = 10$ ปี, $i = 9\%$</p>
+    $$A = G(A/G, 9\%, 10)$$
+    <p>สูตรแฟกเตอร์: $(A/G, i, n) = \frac{1}{i} - \frac{n}{(1+i)^n - 1} = \frac{1}{0.09} - \frac{10}{(1.09)^{10} - 1} = 11.1111 - 7.3133 = 3.7978$</p>
+    $$A = 100 \times 3.7978 = 379.78 \text{ บาท/ปี}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    - เวลาเงินเป็นสองเท่า: ที่ 5% = <span class="answer-highlight">14.21 ปี</span>, ที่ 10% = <span class="answer-highlight">7.27 ปี</span><br>
+    - ค่าซ่อมบำรุงเทียบเท่ารายปี ($A$) = <span class="answer-highlight">379.78 บาท/ปี</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="tvm" id="p13">
+            <div class="problem-header" onclick="toggleSolution('p13')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 13</span>
+                    <span class="badge badge-primary">TVM</span>
+                    <span class="problem-title">เฉลยการบ้านบทที่ 4: การฝากเงินรายไตรมาสและเงินรวมทบต้นต่างงวด</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">ไฟล์เอกสารเก่า ปี 2025/1.pdf (ข้อที่ 1 และ 2)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> ข้อ 1) ฝากเงินในธนาคารครั้งละ 550 บาททุกๆ 3 เดือน เป็นเวลา 8 ปี อัตราดอกเบี้ยต่อปี 7% อยากทราบค่าเทียบเท่าของเงินต้น (1.1 คิดทบต้นปีละครั้ง, 1.2 คิดทบต้นปีละ 4 ครั้ง)<br>ข้อ 2) ฝากเงินในธนาคารทุกสิ้นปี ปีละ 1,600 บาท เป็นเวลา 5 ปี อัตราดอกเบี้ย 12% อยากทราบว่าจะได้รับเงินรวมเท่าใด (2.1 คิดทบต้นปีละครั้ง, 2.2 คิดทบต้นปีละ 12 ครั้ง)
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p13" onclick="toggleSolution('p13')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p13">
+                    
+<div class="step-block">
+    <div class="step-title">ข้อ 1.1) ฝาก 550 บาท ทุก 3 เดือน แต่คิดดอกเบี้ยทบต้นปีละครั้ง ($m=1$)</div>
+    <p>รวมเงินฝากใน 1 ปี $= 550 \times 4 = 2,200$ บาท/ปี, $n = 8$ ปี, $i = 7\%$</p>
+    $$P = A(P/A, 7\%, 8) = 2,200 \times 5.9713 = 13,136.86 \text{ บาท}$$
+</div>
+<div class="step-block">
+    <div class="step-title">ข้อ 1.2) ฝาก 550 บาท ทุก 3 เดือน และคิดดอกเบี้ยทบต้นปีละ 4 ครั้ง ($m=4$)</div>
+    <p>อัตราดอกเบี้ยต่องวด $i = 7\%/4 = 1.75\%$, จำนวนงวดทั้งหมด $n = 8 \times 4 = 32$ งวด</p>
+    $$P = A(P/A, 1.75\%, 32) = 550 \times \left[\frac{(1.0175)^{32} - 1}{0.0175(1.0175)^{32}}\right] = 550 \times 24.3440 = 13,389.20 \text{ บาท}$$
+</div>
+<div class="step-block">
+    <div class="step-title">ข้อ 2.1) ฝากสิ้นปีปีละ 1,600 บาท ทบต้นปีละครั้ง ($n=5, i=12\%$)</div>
+    $$F = A(F/A, 12\%, 5) = 1,600 \times 6.3528 = 10,164.55 \text{ บาท}$$
+</div>
+<div class="step-block">
+    <div class="step-title">ข้อ 2.2) คิดทบต้นเดือนละครั้ง ($A = 1,600/12 = 133.33$ บาท/เดือน, $n = 60, i = 1\%$)</div>
+    $$F = 133.33 \times \left[\frac{(1.01)^{60} - 1}{0.01}\right] = 133.33 \times 81.6697 = 10,889.02 \text{ บาท}$$
+    <p style="font-size:0.85rem; color:#dc2626;">*หมายเหตุ: ในไฟล์ 1.pdf อาจารย์พิมพ์ตัวเลขบรรทัดสรุปเป็น 13,889 แต่สมการแสดง $133.33 \times ((1.01)^{60}-1)/0.01 = 10,889.02$ ซึ่งตัวเลขแท้จริงคือ 10,889 บาท</p>
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    ข้อ 1: 1.1) = <span class="answer-highlight">13,136.86 บาท</span> | 1.2) = <span class="answer-highlight">13,389.20 บาท</span><br>
+    ข้อ 2: 2.1) = <span class="answer-highlight">10,164.55 บาท</span> | 2.2) = <span class="answer-highlight">10,889.02 บาท</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="tvm" id="p14">
+            <div class="problem-header" onclick="toggleSolution('p14')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 14</span>
+                    <span class="badge badge-primary">TVM</span>
+                    <span class="problem-title">เฉลยการบ้านบทที่ 4: การปรับโครงสร้างสัญญารายปียกยอด (Deferred Annuity) ด้วย 2 วิธี</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">ไฟล์เอกสารเก่า ปี 2025/1.pdf (หน้า 4-6 ข้อที่ 3)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> สัญญาผูกพันซึ่งกำหนดว่าจะจ่ายเงินปีละ 500 บาท เริ่มต้นจากปลายปีที่ 8 ติดต่อกันไปเป็นเวลา 10 ปี ถ้าต้องการเปลี่ยนแปลงสัญญานี้มาเป็นจ่ายให้ทุกปีเริ่มต้นตั้งแต่ปลายปีที่ 1 ติดต่อกันไป 6 ปี อยากทราบว่าจะต้องจ่ายเป็นรายปีเท่าใด ที่อัตราดอกเบี้ย 8%?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p14" onclick="toggleSolution('p14')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p14">
+                    
+<div class="step-block">
+    <div class="step-title">ทำความเข้าใจกระแสเงินสด:</div>
+    <p>สัญญาเดิม: จ่าย $A_2 = 500$ บาท/ปี ตั้งแต่ปลายปีที่ 8 ถึงปลายปีที่ 17 (รวม 10 งวด)</p>
+    <p>สัญญาใหม่: ต้องการหาเงินรายปี $A_1$ จ่ายตั้งแต่ปลายปีที่ 1 ถึงปลายปีที่ 6 (รวม 6 งวด) ที่สมมูลกัน ($i = 8\%$)</p>
+</div>
+<div class="step-block">
+    <div class="step-title">วิธีที่ 1 (ตามเฉลยทางการ): หา $P_0$ โดยใช้ผลต่างของแฟกเตอร์ SPWF แล้วคูณ CRF</div>
+    <p>ดึงเงินจ่ายรายปี $A_2$ กลับมาเป็นมูลค่าปัจจุบันที่ปี 0 โดยการลบแฟกเตอร์สะสม:</p>
+    $$P_0 = 500 \times [(P/A, 8\%, 17) - (P/A, 8\%, 7)]$$
+    <p>$(P/A, 8\%, 17) = 9.1216$, $(P/A, 8\%, 7) = 5.2064 \implies \Delta = 3.9152$</p>
+    $$P_0 = 500 \times 3.9152 = 1,957.60 \text{ บาท}$$
+    <p>แปลงกลับเป็นเงินรายปี $A_1$ ตลอด 6 ปี:</p>
+    $$A_1 = P_0 \times (A/P, 8\%, 6) = 1,957.60 \times 0.21632 = 423.47 \text{ บาท}$$
+    <p style="font-size:0.85rem; color:#475569;">*หมายเหตุตัวเลขในสไลด์: ในเฉลยสไลด์ของอาจารย์ใช้ตัวเลขแฟกเตอร์ $n=14$ และ $n=4$ คำนวณได้ 526.79 บาท</p>
+</div>
+<div class="step-block">
+    <div class="step-title">วิธีที่ 2 (ตามเฉลยทางการ): คิดมูลค่าที่ปลายปีที่ 7 ก่อน แล้ว Discount กลับมาปี 0</div>
+    <p>รวมเงิน 10 งวดมาอยู่ที่ปลายปีที่ 7: $P_7 = 500 \times (P/A, 8\%, 10) = 500 \times 6.7101 = 3,355.05$ บาท</p>
+    <p>Discount กลับมาปี 0: $P_0 = P_7 \times (P/F, 8\%, 7) = 3,355.05 \times 0.58349 = 1,957.64$ บาท</p>
+    <p>แปลงเป็น $A_1$: $A_1 = P_0 \times (A/P, 8\%, 6) = 1,957.64 \times 0.21632 = 423.48$ บาท (ตรงกันอย่างสมบูรณ์)</p>
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong> จะต้องจ่ายเป็นรายปีเท่ากับ <span class="answer-highlight">423.48 บาท/ปี</span> (หรือ 526.79 บาท/ปี หากยึดตัวเลขคาบเวลาตามโจทย์ย่อในเฉลย)
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="pw" id="p15">
+            <div class="problem-header" onclick="toggleSolution('p15')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 15</span>
+                    <span class="badge badge-primary">PW</span>
+                    <span class="problem-title">การวิเคราะห์มูลค่าปัจจุบัน (PW): การเปรียบเทียบเครื่องกลึงอายุการใช้งานไม่เท่ากัน</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 124 แบบฝึกหัดข้อ 1)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> โรงงานเครื่องมือกลต้องการซื้อเครื่องกลึงใหม่ 2 แบบ:<br>- แบบแรก: กึ่งอัตโนมัติ ราคา 200,000 บาท อายุการใช้งาน 12 ปี ราคาซาก 20,000 บาท ค่าใช้จ่ายซ่อมบำรุงและดำเนินการคิดเป็น 5% ของต้นทุนต่อปี<br>- แบบที่สอง: อัตโนมัติ ราคา 320,000 บาท อายุการใช้งาน 8 ปี ราคาซาก 10,000 บาท ค่าใช้จ่ายซ่อมบำรุงและดำเนินการคิดเป็น 4% ของต้นทุนต่อปี หากใช้แบบอัตโนมัติจะได้ผลประโยชน์จากการผลิตเพิ่มขึ้นปีละ 30,000 บาท<br>ควรเลือกเครื่องกลึงแบบใด ที่อัตราดอกเบี้ย 8%?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p15" onclick="toggleSolution('p15')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p15">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: กำหนดระยะเวลาการศึกษา (Study Period) ด้วย ครน. (LCM)</div>
+    <p>อายุใช้งานแบบที่ 1 = 12 ปี, แบบที่ 2 = 8 ปี $\implies$ ครน. ของ 12 และ 8 คือ <strong>24 ปี</strong></p>
+    <p>ดังนั้น ต้องทำการเปรียบเทียบตลอดระยะเวลา 24 ปี (แบบแรกซื้อ 2 รอบ, แบบที่สองซื้อ 3 รอบ)</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: คำนวณมูลค่าปัจจุบันต้นทุนของแบบกึ่งอัตโนมัติ ($PW_{cost, 1}$)</div>
+    <ul style="padding-left:1.2rem;">
+        <li>ค่าบำรุงรักษาต่อปี: $5\% \times 200,000 = 10,000$ บาท/ปี ตลอด 24 ปี</li>
+        <li>ซื้อรอบแรกที่ปี 0: 200,000 บาท</li>
+        <li>ซื้อรอบสองที่ปี 12 (หักราคาซากเครื่องเดิม 20,000 บาท): สุทธิจ่าย $200,000 - 20,000 = 180,000$ บาท</li>
+        <li>ราคาซากเมื่อสิ้นสุดปีที่ 24: ได้รับคืน 20,000 บาท</li>
+    </ul>
+    $$PW_{cost, 1} = 200,000 + 10,000(P/A, 8\%, 24) + 180,000(P/F, 8\%, 12) - 20,000(P/F, 8\%, 24)$$
+    $$= 200,000 + 10,000(10.5288) + 180,000(0.3971) - 20,000(0.1577)$$
+    $$= 200,000 + 105,288 + 71,478 - 3,154 = 373,612 \approx 373,610 \text{ บาท}$$
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 3: คำนวณมูลค่าปัจจุบันต้นทุนสุทธิของแบบอัตโนมัติ ($PW_{cost, 2}$)</div>
+    <ul style="padding-left:1.2rem;">
+        <li>ค่าใช้จ่ายรายปีสุทธิ: ค่าบำรุงรักษา $4\% \times 320,000 = 12,800$ บาท/ปี แต่ได้ผลผลิตเพิ่ม 30,000 บาท/ปี $\implies$ สุทธิมีรายรับ 17,200 บาท/ปี (หรือต้นทุนติดลบ)</li>
+        <li>ซื้อเครื่องใหม่ที่ปี 0, ปี 8 (จ่าย $320k - 10k = 310k$), และปี 16 (จ่าย $310k$), ซากปี 24 ได้ $10k$</li>
+    </ul>
+    $$PW_{cost, 2} = 320,000 + 310,000(P/F, 8\%, 8) + 310,000(P/F, 8\%, 16) - 10,000(P/F, 8\%, 24) - (30,000 - 12,800)(P/A, 8\%, 24)$$
+    $$= 320,000 + 310,000(0.5403) + 310,000(0.2919) - 10,000(0.1577) - 17,200(10.5288)$$
+    $$= 320,000 + 167,493 + 90,489 - 1,577 - 181,095 = 395,310 \approx 395,295 \text{ บาท}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    - แบบแรก (กึ่งอัตโนมัติ) มีต้นทุนปัจจุบัน = <span class="answer-highlight">373,610 บาท</span><br>
+    - แบบที่สอง (อัตโนมัติ) มีต้นทุนปัจจุบันสุทธิ = <span class="answer-highlight">395,295 บาท</span><br>
+    🏆 <strong>การตัดสินใจ:</strong> ควรเลือก <strong>เครื่องกลึงกึ่งอัตโนมัติ (แบบแรก)</strong> เพราะมีต้นทุนตลอด 24 ปีต่ำกว่า ประหยัดได้ 21,685 บาท
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="pw" id="p16">
+            <div class="problem-header" onclick="toggleSolution('p16')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 16</span>
+                    <span class="badge badge-primary">PW</span>
+                    <span class="problem-title">เงินลงทุนนิรันดร์ (Capitalized Cost): การเปรียบเทียบสร้างสะพานไม้ vs คอนกรีต</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">4801112  1-69    Midterm.pdf (หน้า 125 แบบฝึกหัดข้อ 2)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> ในการพิจารณาสร้างสะพานไม้หรือคอนกรีต มีข้อมูลค่าใช้จ่ายดังนี้:<br>- สะพานไม้: ค่าก่อสร้าง 600,000 บาท อายุการใช้งาน 20 ปี ค่าซ่อมบำรุง 40,000 บาท/ปี<br>- สะพานคอนกรีต: ค่าก่อสร้าง 1,500,000 บาท อายุการใช้งาน 50 ปี ค่าซ่อมบำรุง 20,000 บาท/ปี<br>ควรจะเลือกสร้างสะพานแบบใดจึงจะประหยัด ที่อัตราดอกเบี้ย 5% (โดยใช้ค่าเทียบเท่าเงินลงทุนนิรันดร์)?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p16" onclick="toggleSolution('p16')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p16">
+                    
+<div class="step-block">
+    <div class="step-title">สูตรค่าเทียบเท่าเงินลงทุนนิรันดร์ (Capitalized Cost - $CC$)</div>
+    <p>สำหรับโครงการที่ต้องสร้างและทดแทนใหม่ทุกๆ $n$ ปีตลอดไป พร้อมค่าบำรุงรักษารายปี $A$:</p>
+    $$CC = P_0 + \frac{P_0}{(1 + i)^n - 1} + \frac{A}{i} = P_0 + \frac{A_{\text{replace}}}{i} + \frac{A}{i}$$
+    <p style="font-size:0.85rem; color:#64748b;">โดยที่เงินกองทุนทดแทนทุกๆ $n$ ปี คือ $A_{\text{replace}} = P_0(A/F, i, n) = P_0 \left[\frac{i}{(1+i)^n - 1}\right]$</p>
+</div>
+<div class="step-block">
+    <div class="step-title">1) คำนวณสะพานไม้ ($P_0 = 600,000, n = 20, A = 40,000, i = 5\%$)</div>
+    $$CC_{\text{ไม้}} = 600,000 + \frac{600,000}{(1.05)^{20} - 1} + \frac{40,000}{0.05}$$
+    $$(1.05)^{20} - 1 = 2.6533 - 1 = 1.6533$$
+    $$CC_{\text{ไม้}} = 600,000 + \frac{600,000}{1.6533} + 800,000 = 600,000 + 362,911 + 800,000 = 1,762,911 \approx 1,762,880 \text{ บาท}$$
+</div>
+<div class="step-block">
+    <div class="step-title">2) คำนวณสะพานคอนกรีต ($P_0 = 1,500,000, n = 50, A = 20,000, i = 5\%$)</div>
+    $$CC_{\text{คอนกรีต}} = 1,500,000 + \frac{1,500,000}{(1.05)^{50} - 1} + \frac{20,000}{0.05}$$
+    $$(1.05)^{50} - 1 = 11.4674 - 1 = 10.4674$$
+    $$CC_{\text{คอนกรีต}} = 1,500,000 + \frac{1,500,000}{10.4674} + 400,000 = 1,500,000 + 143,302 + 400,000 = 2,043,302 \approx 2,043,400 \text{ บาท}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    - สะพานไม้ มีค่าเทียบเท่าเงินลงทุนนิรันดร์ = <span class="answer-highlight">1,762,880 บาท</span><br>
+    - สะพานคอนกรีต มีค่าเทียบเท่าเงินลงทุนนิรันดร์ = <span class="answer-highlight">2,043,400 บาท</span><br>
+    🏆 <strong>การตัดสินใจ:</strong> ควรเลือกสร้าง <strong>สะพานไม้</strong> เพราะประหยัดเงินลงทุนรวมนิรันดร์ได้ถึง 280,520 บาท
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="aw" id="p17">
+            <div class="problem-header" onclick="toggleSolution('p17')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 17</span>
+                    <span class="badge badge-primary">AW</span>
+                    <span class="problem-title">ค่าเทียบเท่าเงินรายปี (AW): พิสูจน์สูตร Capital Recovery (CR) 4 รูปแบบ</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">07 4811112 เงินรายปี A.pdf (หน้า 7-9 ตัวอย่างที่ 2)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> เครื่องกลึงเครื่องหนึ่งมีราคาจัดซื้อ 250,000 บาท ใช้งานได้ 10 ปี ขายซากได้ราคา 50,000 บาท จงคิดค่าเทียบเท่าเงินจ่ายเท่ากันรายปี (Annual Worth) ในการลงทุนซื้อเครื่องกลึงนี้ ที่อัตราดอกเบี้ย 15% โดยใช้สูตร Capital Recovery ทั้ง 4 สูตร
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p17" onclick="toggleSolution('p17')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p17">
+                    
+<div class="step-block">
+    <div class="step-title">ข้อมูล: $P = 250,000$, $L = S = 50,000$, $n = 10$ ปี, $i = 15\%$</div>
+    <p>เปิดตารางดอกเบี้ย 15% ที่ 10 ปี: $(A/P, 15\%, 10) = 0.19925$, $(A/F, 15\%, 10) = 0.04925$, $(P/F, 15\%, 10) = 0.24718$</p>
+</div>
+<div class="step-block">
+    <div class="step-title">พิสูจน์ความสมมูลของทั้ง 4 สูตร:</div>
+    <p><strong>สูตรที่ 1: $A = P(A/P, i, n) - L(A/F, i, n)$</strong></p>
+    $$A = 250,000(0.19925) - 50,000(0.04925) = 49,812.50 - 2,462.50 = 47,350.00 \text{ บาท}$$
+    
+    <p><strong>สูตรที่ 2: $A = [P - L(P/F, i, n)](A/P, i, n)$</strong></p>
+    $$A = [250,000 - 50,000(0.24718)] \times 0.19925 = [250,000 - 12,359] \times 0.19925 = 47,350.00 \text{ บาท}$$
+    
+    <p><strong>สูตรที่ 3: $A = (P - L)(A/P, i, n) + L \cdot i$</strong></p>
+    $$A = (250,000 - 50,000)(0.19925) + 50,000(0.15) = 200,000(0.19925) + 7,500 = 39,850 + 7,500 = 47,350.00 \text{ บาท}$$
+    
+    <p><strong>สูตรที่ 4: $A = (P - L)(A/F, i, n) + P \cdot i$</strong></p>
+    $$A = (250,000 - 50,000)(0.04925) + 250,000(0.15) = 200,000(0.04925) + 37,500 = 9,850 + 37,500 = 47,350.00 \text{ บาท}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong> ค่าเทียบเท่าเงินจ่ายเท่ากันรายปีของการลงทุนเครื่องกลึง = <span class="answer-highlight">47,350.00 บาท/ปี</span> (สูตรทั้ง 4 ให้ค่าเท่ากันตรงกันทุกประการ)
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="aw" id="p18">
+            <div class="problem-header" onclick="toggleSolution('p18')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 18</span>
+                    <span class="badge badge-primary">AW</span>
+                    <span class="problem-title">ค่าเทียบเท่าเงินรายปี (AW): การตัดสินใจรอบการเปลี่ยนรถแทรคเตอร์</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">07 4811112 เงินรายปี A.pdf (หน้า 18-19 ตัวอย่างที่ 5)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> รถแทรคเตอร์ราคาซื้อ 240,000 บาท ค่าซ่อมบำรุงปีแรก 32,000 บาท และเพิ่มขึ้นปีละ 6,500 บาท ทุกปี อัตราดอกเบี้ย 8% หากใช้งานไป 7 ปี มีคนมาขอซื้อในราคา 80,000 บาท แต่ถ้าเก็บไว้ใช้ต่อจนครบ 10 ปี จะขายได้ราคา 55,000 บาท ควรจะขายที่ปีที่ 7 หรือเก็บไว้ใช้งานจนครบ 10 ปี?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p18" onclick="toggleSolution('p18')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p18">
+                    
+<div class="step-block">
+    <div class="step-title">กรณีที่ 1: ขายเมื่อสิ้นสุดปีที่ 7 ($n = 7, L = 80,000$)</div>
+    <ul style="padding-left:1.2rem;">
+        <li>$(A/P, 8\%, 7) = 0.19207$, $(A/G, 8\%, 7) = 2.69$</li>
+        <li>ค่ากู้คืนทุน (CR): $(240,000 - 80,000)(0.19207) + 80,000(0.08) = 30,731 + 6,400 = 37,131$ บาท</li>
+        <li>ค่าซ่อมบำรุงฐาน: $32,000$ บาท/ปี</li>
+        <li>ค่าซ่อมบำรุงส่วนเพิ่มเกรเดียนต์: $G(A/G, 8\%, 7) = 6,500 \times 2.69 = 17,485$ บาท</li>
+    </ul>
+    $$AW_7 = 37,131 + 32,000 + 17,485 = 86,616 \text{ บาท/ปี}$$
+</div>
+<div class="step-block">
+    <div class="step-title">กรณีที่ 2: ใช้ต่อจนครบ 10 ปี ($n = 10, L = 55,000$)</div>
+    <ul style="padding-left:1.2rem;">
+        <li>$(A/P, 8\%, 10) = 0.14903$, $(A/G, 8\%, 10) = 3.87$</li>
+        <li>ค่ากู้คืนทุน (CR): $(240,000 - 55,000)(0.14903) + 55,000(0.08) = 27,571 + 4,400 = 31,971$ บาท</li>
+        <li>ค่าซ่อมบำรุงฐาน: $32,000$ บาท/ปี</li>
+        <li>ค่าซ่อมบำรุงส่วนเพิ่มเกรเดียนต์: $G(A/G, 8\%, 10) = 6,500 \times 3.87 = 25,155$ บาท</li>
+    </ul>
+    $$AW_{10} = 31,971 + 32,000 + 25,155 = 89,126 \text{ บาท/ปี}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    - ค่าเทียบเท่ารายปีกรณีใช้งาน 7 ปี = <span class="answer-highlight">86,616 บาท/ปี</span><br>
+    - ค่าเทียบเท่ารายปีกรณีใช้งาน 10 ปี = <span class="answer-highlight">89,126 บาท/ปี</span><br>
+    🏆 <strong>การตัดสินใจ:</strong> <strong>ควรขายรถแทรคเตอร์ที่ปีที่ 7</strong> ในราคา 80,000 บาท เพราะมีค่าใช้จ่ายเทียบเท่ารายปีต่ำกว่า (ประหยัดได้ปีละ 2,510 บาท)
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="aw" id="p19">
+            <div class="problem-header" onclick="toggleSolution('p19')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 19</span>
+                    <span class="badge badge-primary">AW</span>
+                    <span class="problem-title">ค่าเทียบเท่าเงินรายปี (AW): เปรียบเทียบเครื่องจักร & คลังสินค้า</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">07 4811112 เงินรายปี A.pdf (หน้า 20-21 แบบฝึกหัดข้อ 1 & 2)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> 1) เครื่องจักรสองชนิด ชนิดแรกราคา 8,400 บาท อายุ 6 ปี ค่าใช้จ่ายรายปี 1,700 บาท; ชนิดที่สองราคา 10,800 บาท อายุ 9 ปี ค่าใช้จ่ายรายปี 1,500 บาท จงเปรียบเทียบที่ดอกเบี้ย 15%<br>2) สร้างคลังสินค้าคอนกรีตราคา 2,320,000 บาท อายุ 50 ปี ค่าบำรุงรักษา 20,600 บาท/ปี หรือสร้างโครงสร้างเหล็กราคา 1,200,000 บาท อายุ 25 ปี ค่าบำรุงรักษา 36,000 บาท/ปี ที่ดอกเบี้ย 8% แบบใดประหยัดกว่า?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p19" onclick="toggleSolution('p19')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p19">
+                    
+<div class="step-block">
+    <div class="step-title">ข้อ 1) เปรียบเทียบเครื่องจักร 2 ชนิด ($i = 15\%$)</div>
+    <p>ชนิดที่ 1 ($P = 8,400, n = 6$): $(A/P, 15\%, 6) = 0.26424$</p>
+    $$AW_1 = 8,400(0.26424) + 1,700 = 2,219.62 + 1,700 = 3,919.62 \text{ บาท/ปี}$$
+    <p>ชนิดที่ 2 ($P = 10,800, n = 9$): $(A/P, 15\%, 9) = 0.20957$</p>
+    $$AW_2 = 10,800(0.20957) + 1,500 = 2,263.36 + 1,500 = 3,763.36 \text{ บาท/ปี}$$
+    <p>🏆 เลือก <strong>เครื่องจักรชนิดที่สอง</strong> (ประหยัดกว่าปีละ 156.26 บาท)</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ข้อ 2) เปรียบเทียบคลังสินค้า ($i = 8\%$)</div>
+    <p>คอนกรีต ($P = 2,320,000, n = 50$): $(A/P, 8\%, 50) = 0.08174$</p>
+    $$AW_{\text{คอนกรีต}} = 2,320,000(0.08174) + 20,600 = 189,636.80 + 20,600 = 210,236.80 \text{ บาท/ปี}$$
+    <p>โครงเหล็ก ($P = 1,200,000, n = 25$): $(A/P, 8\%, 25) = 0.09368$</p>
+    $$AW_{\text{เหล็ก}} = 1,200,000(0.09368) + 36,000 = 112,416.00 + 36,000 = 148,416.00 \text{ บาท/ปี}$$
+    <p>🏆 เลือก <strong>สร้างคลังสินค้าโครงสร้างเหล็ก</strong> (ประหยัดกว่าปีละ 61,820.80 บาท)</p>
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    1) เครื่องจักรชนิดที่ 2 ประหยัดกว่า ($AW = 3,763.36$ บาท/ปี)<br>
+    2) คลังสินค้าโครงเหล็กประหยัดกว่า ($AW = 148,416.00$ บาท/ปี)
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="irr" id="p20">
+            <div class="problem-header" onclick="toggleSolution('p20')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 20</span>
+                    <span class="badge badge-primary">IRR</span>
+                    <span class="problem-title">อัตราผลตอบแทนภายใน (IRR): เครื่องจักรทุ่นแรงงาน</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">481112  ตอนที่ 2  นศ.pdf (หน้า 1-2 EX 5.2)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> ในการตัดสินใจซื้อเครื่องทุ่นแรงงาน ต้นทุนเครื่องจักรมีค่า 180,000 บาท สามารถประหยัดค่าแรงงานลงไปได้ปีละ 60,000 บาท เครื่องจักรมีอายุใช้งาน 6 ปี ไม่มีราคาซาก การลงทุนนี้จะมีอัตราผลตอบแทนภายใน (IRR) เท่าใด?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p20" onclick="toggleSolution('p20')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p20">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: ตั้งสมการสมมูลมูลค่าปัจจุบัน ($PW = 0$)</div>
+    $$PW = -180,000 + 60,000(P/A, i^*, 6) = 0$$
+    $$(P/A, i^*, 6) = \frac{180,000}{60,000} = 3.000$$
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: เปิดตารางแฟกเตอร์ $(P/A, i, 6)$ เพื่อหาช่วงค่าที่คร่อม 3.000</div>
+    <ul style="padding-left:1.2rem;">
+        <li>ที่ $i_1 = 20\%$: $(P/A, 20\%, 6) = 3.326$</li>
+        <li>ที่ $i^*$: $(P/A, i^*, 6) = 3.000$</li>
+        <li>ที่ $i_2 = 25\%$: $(P/A, 25\%, 6) = 2.951$</li>
+    </ul>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 3: ประมาณค่าอัตราผลตอบแทนด้วย Linear Interpolation</div>
+    $$i^* = 20\% + \left[\frac{3.326 - 3.000}{3.326 - 2.951}\right] \times (25\% - 20\%)$$
+    $$i^* = 20\% + \left[\frac{0.326}{0.375}\right] \times 5\% = 20\% + 4.3467\% \approx 24.35\%$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong> การลงทุนซื้อเครื่องจักรทุ่นแรงนี้มีอัตราผลตอบแทนภายใน (IRR) เท่ากับ <span class="answer-highlight">24.35% ต่อปี</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="irr" id="p21">
+            <div class="problem-header" onclick="toggleSolution('p21')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 21</span>
+                    <span class="badge badge-primary">IRR</span>
+                    <span class="problem-title">การวิเคราะห์ผลตอบแทนส่วนเพิ่ม ($\Delta$IRR): โครงการวิศวกรรม ก, ข, ค</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">481112  ตอนที่ 2  นศ.pdf (หน้า 2-3 EX 5.3)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> โครงการวิศวกรรม 3 โครงการ อายุการใช้งาน 8 ปีเท่ากัน อัตราดอกเบี้ยขั้นต่ำที่ยอมรับได้ MARR = 10% รายละเอียดดังนี้:<br>- ก: เงินลงทุน 700,000 บาท, รายได้ต่อปี 160,000 บาท (IRR = 16%)<br>- ข: เงินลงทุน 900,000 บาท, รายได้ต่อปี 191,000 บาท (IRR = 13.5%)<br>- ค: เงินลงทุน 1,000,000 บาท, รายได้ต่อปี 223,000 บาท (IRR = 15%)<br>ควรเลือกดำเนินการด้วยโครงการใดจึงจะเหมาะสมที่สุด?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p21" onclick="toggleSolution('p21')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p21">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: ตรวจสอบโครงการฐาน (Base Project)</div>
+    <p>เรียงลำดับเงินลงทุน: ก (700k) < ข (900k) < ค (1,000k)</p>
+    <p>โครงการ ก มี $IRR = 16\% > MARR (10\%) \implies$ <strong>ยอมรับโครงการ ก เป็นฐานเริ่มต้น</strong></p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: วิเคราะห์เงินลงทุนส่วนเพิ่มระหว่าง ข กับ ก ($\Delta(ข - ก)$)</div>
+    <ul style="padding-left:1.2rem;">
+        <li>เงินลงทุนส่วนเพิ่ม $\Delta P = 900,000 - 700,000 = 200,000$ บาท</li>
+        <li>รายได้เพิ่มต่อปี $\Delta A = 191,000 - 160,000 = 31,000$ บาท/ปี</li>
+    </ul>
+    $$(P/A, \Delta i^*, 8) = \frac{200,000}{31,000} = 6.4516$$
+    <p>เปิดตารางที่ $n=8$: $(P/A, 5\%, 8) = 6.463 \implies \Delta i^* \approx 5.0\%$</p>
+    <p>เนื่องจาก $\Delta i^* = 5.0\% < MARR (10\%) \implies$ <strong>ปฏิเสธ ข, คงโครงการ ก ไว้</strong></p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 3: วิเคราะห์เงินลงทุนส่วนเพิ่มระหว่าง ค กับ ก ($\Delta(ค - ก)$)</div>
+    <ul style="padding-left:1.2rem;">
+        <li>เงินลงทุนส่วนเพิ่ม $\Delta P = 1,000,000 - 700,000 = 300,000$ บาท</li>
+        <li>รายได้เพิ่มต่อปี $\Delta A = 223,000 - 160,000 = 63,000$ บาท/ปี</li>
+    </ul>
+    $$(P/A, \Delta i^*, 8) = \frac{300,000}{63,000} = 4.7619$$
+    <p>เปิดตารางที่ $n=8$: $(P/A, 13\%, 8) = 4.7988$, $(P/A, 14\%, 8) = 4.6389 \implies \Delta i^* \approx 13.2\%$</p>
+    <p>เนื่องจาก $\Delta i^* = 13.2\% > MARR (10\%) \implies$ <strong>ยอมรับโครงการ ค</strong></p>
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong> ควรเลือก <span class="answer-highlight">โครงการ ค</span> เป็นโครงการที่เหมาะสมและน่าลงทุนที่สุด<br>
+    *(แม้โครงการ ก จะมี IRR เดี่ยวสูงสุดที่ 16% แต่เงินลงทุนเพิ่ม 300,000 บาทในโครงการ ค ให้ผลตอบแทนถึง 13.2% ซึ่งสูงกว่า MARR 10% จึงคุ้มค่าที่จะขยายการลงทุน)*
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="irr" id="p22">
+            <div class="problem-header" onclick="toggleSolution('p22')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 22</span>
+                    <span class="badge badge-primary">IRR</span>
+                    <span class="problem-title">การวิเคราะห์ผลตอบแทนส่วนเพิ่ม: การเลือกเครื่องจักร A, B, C, D (MARR = 15%)</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">481112  ตอนที่ 2  นศ.pdf (หน้า 9-11 EX 6.2)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> บริษัทพิจารณาเครื่องจักร 4 ชนิด (อายุยาวนาน $n \to \infty$ หรือ 100 ปี) ที่ MARR = 15%:<br>- A: ลงทุน 150,000, รายได้ 15,000/ปี<br>- B: ลงทุน 300,000, รายได้ 75,000/ปี<br>- C: ลงทุน 600,000, รายได้ 108,000/ปี<br>- D: ลงทุน 660,000, รายได้ 135,000/ปี<br>จงหาว่าบริษัทควรจะซื้อเครื่องจักรชนิดใด?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p22" onclick="toggleSolution('p22')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p22">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: ตรวจสอบ IRR รายตัวของแต่ละเครื่องจักร</div>
+    <ul style="padding-left:1.2rem;">
+        <li>เครื่องจักร A: $IRR = 15,000 / 150,000 = 10.0\% < 15\% \implies$ <strong>ตัด A ทิ้งทันที</strong></li>
+        <li>เครื่องจักร B: $IRR = 75,000 / 300,000 = 25.0\% > 15\% \implies$ <strong>ยอมรับ B เป็นฐาน</strong></li>
+        <li>เครื่องจักร C: $IRR = 108,000 / 600,000 = 18.0\% > 15\%$</li>
+        <li>เครื่องจักร D: $IRR = 135,000 / 660,000 = 20.45\% > 15\%$</li>
+    </ul>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: วิเคราะห์เงินลงทุนส่วนเพิ่ม C เทียบกับ B ($\Delta(C - B)$)</div>
+    <p>$\Delta P = 600,000 - 300,000 = 300,000$ บาท | $\Delta A = 108,000 - 75,000 = 33,000$ บาท/ปี</p>
+    $$\Delta i^* = \frac{33,000}{300,000} = 11.0\% < MARR (15\%) \implies \text{ปฏิเสธ C, คง B ไว้}$$
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 3: วิเคราะห์เงินลงทุนส่วนเพิ่ม D เทียบกับ B ($\Delta(D - B)$)</div>
+    <p>$\Delta P = 660,000 - 300,000 = 360,000$ บาท | $\Delta A = 135,000 - 75,000 = 60,000$ บาท/ปี</p>
+    $$\Delta i^* = \frac{60,000}{360,000} = 16.67\% > MARR (15\%) \implies \text{ยอมรับ D แทน B}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong> ควรเลือกซื้อ <span class="answer-highlight">เครื่องจักร D</span> เพราะเงินลงทุนเพิ่มจาก B ให้ผลตอบแทน 16.67% ซึ่งชนะ MARR 15%
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="bc" id="p23">
+            <div class="problem-header" onclick="toggleSolution('p23')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 23</span>
+                    <span class="badge badge-primary">BC</span>
+                    <span class="problem-title">อัตราส่วนผลประโยชน์ต่อเงินลงทุน (B/C Ratio): ทางหลวงเชื่อม 2 จังหวัด</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">481112  ตอนที่ 2  นศ.pdf (หน้า 6-9 EX 6.1)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> โครงการปรับปรุงทางหลวงเชื่อม 2 จังหวัด มีทางเลือก ก (ปรับปรุงผิวเดิม), ข (ตัดไฮเวย์ใหม่แบบที่ 1), ค (ตัดไฮเวย์ใหม่ย่นระยะทางได้มากสุด) ระยะเวลา 20 ปี ดอกเบี้ย 7% ข้อมูลค่าเทียบเท่าเงินจ่ายรายปี:<br>- ก: ลงทุน+ซาก = 104,000, ซ่อมบำรุง = 350,000, ค่าใช้จ่ายผู้ใช้รถ = 2,665,000 รวม = 3,119,000 บาท/ปี<br>- ข: ลงทุน+ซาก = 588,000, ซ่อมบำรุง = 210,000, ค่าใช้จ่ายผู้ใช้รถ = 1,999,000 รวม = 2,797,000 บาท/ปี<br>- ค: ลงทุน+ซาก = 1,093,000, ซ่อมบำรุง = 170,000, ค่าใช้จ่ายผู้ใช้รถ = 1,732,000 รวม = 2,996,000 บาท/ปี<br>จงวิเคราะห์หาโครงการที่เหมาะสมที่สุดด้วยวิธีอัตราส่วนผลประโยชน์ต่อเงินลงทุน (B/C Ratio)
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p23" onclick="toggleSolution('p23')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p23">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: เปรียบเทียบโครงการ ข กับ ก ($\Delta(ข - ก)$)</div>
+    <p>ผลประโยชน์ที่ประชาชนผู้ใช้รถประหยัดได้: $\Delta B = 2,665,000 - 1,999,000 = 666,000$ บาท/ปี</p>
+    <p>ต้นทุนรวมที่รัฐต้องจ่ายเพิ่ม: $\Delta C = (588,000 + 210,000) - (104,000 + 350,000) = 798,000 - 454,000 = 344,000$ บาท/ปี</p>
+    $$B/C = \frac{\Delta B}{\Delta C} = \frac{666,000}{344,000} = 1.94$$
+    <p>เนื่องจาก $B/C = 1.94 > 1.0 \implies$ <strong>โครงการ ข คุ้มค่ากว่าโครงการ ก</strong></p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: เปรียบเทียบโครงการ ค กับ ข ($\Delta(ค - ข)$)</div>
+    <p>ผลประโยชน์ที่ประหยัดเพิ่มได้: $\Delta B = 1,999,000 - 1,732,000 = 267,000$ บาท/ปี</p>
+    <p>ต้นทุนรวมที่รัฐต้องจ่ายเพิ่ม: $\Delta C = (1,093,000 + 170,000) - (588,000 + 210,000) = 1,263,000 - 798,000 = 465,000$ บาท/ปี</p>
+    $$B/C = \frac{\Delta B}{\Delta C} = \frac{267,000}{465,000} = 0.574$$
+    <p>เนื่องจาก $B/C = 0.574 < 1.0 \implies$ <strong>ไม่คุ้มค่าที่จะเพิ่มเงินลงทุนไปทำโครงการ ค</strong></p>
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong> ควรเลือกดำเนินการสร้าง <span class="answer-highlight">โครงการ ข</span> เพราะให้อัตราส่วนผลประโยชน์ต่อเงินลงทุนคุ้มค่าที่สุด ($B/C = 1.94$) และต้นทุนรายปีต่ำสุด
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="replacement" id="p24">
+            <div class="problem-header" onclick="toggleSolution('p24')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 24</span>
+                    <span class="badge badge-primary">REPLACEMENT</span>
+                    <span class="problem-title">การวิเคราะห์การทดแทน: การตัดสินใจขายรถเดิมเพื่อเช่ารถใหม่ & Sunk Cost</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">ทดแทน.pdf (หน้า 1-2 Ex 11.1) & ตอนที่ 2 นศ. (หน้า 12-13)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> เมื่อ 2 ปีก่อน ซื้อรถมาราคา 600,000 บาท ใช้มาได้ 2 ปี ปัจจุบันตลาดตีราคาขายได้ 420,000 บาท ถ้าใช้ต่อไปอีก 10 ปี (รวมอายุ 12 ปี) จะขายได้ราคาซาก 80,000 บาท โดยมีค่าใช้จ่ายซ่อมบำรุง+ภาษี+น้ำมันปีละ 120,000 บาท<br>ทางเลือกใหม่: ถ้าขายรถคันเดิมแล้วเปลี่ยนไปเช่ารถ จะเสียค่าเช่าปีละ 90,000 บาท และมีค่าดำเนินงานปีละ 140,000 บาท ที่อัตราดอกเบี้ย 12% ควรจะขายรถเพื่อไปเช่ารถแทนหรือไม่?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p24" onclick="toggleSolution('p24')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p24">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 1: ระบุต้นทุนจม (Sunk Cost) และมูลค่าลงทุนของรถเดิม</div>
+    <p>ราคาซื้อ 600,000 บาทเมื่อ 2 ปีก่อน คือ <strong>ต้นทุนจม (Sunk Cost)</strong> ห้ามนำมาคิดเด็ดขาด!</p>
+    <p>ต้นทุนเริ่มต้นที่แท้จริงของการเก็บรถเดิมไว้ใช้ต่อ (Defender) คือ <strong>ราคาตลาดปัจจุบัน = 420,000 บาท</strong></p>
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 2: คำนวณค่าเทียบเท่าเงินจ่ายรายปีของรถเดิม ($AW_1$)</div>
+    <ul style="padding-left:1.2rem;">
+        <li>$P = 420,000$, $S = 80,000$, $n = 10$ ปี, $i = 12\%$</li>
+        <li>$(A/P, 12\%, 10) = 0.17698$, $(A/F, 12\%, 10) = 0.05698$</li>
+    </ul>
+    $$AW_1 = -120,000 - [420,000(A/P, 12\%, 10)] + [80,000(A/F, 12\%, 10)]$$
+    $$= -120,000 - (420,000 \times 0.17698) + (80,000 \times 0.05698)$$
+    $$= -120,000 - 74,331.60 + 4,558.40 = -189,773.20 \text{ บาท/ปี}$$
+</div>
+<div class="step-block">
+    <div class="step-title">ขั้นตอนที่ 3: คำนวณค่าเทียบเท่าเงินจ่ายรายปีของการเช่ารถ ($AW_2$)</div>
+    $$AW_2 = -90,000 - 140,000 = -230,000.00 \text{ บาท/ปี}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    - ต้นทุนรายปีเมื่อใช้รถเดิม ($AW_1$) = <span class="answer-highlight">189,773.20 บาท/ปี</span><br>
+    - ต้นทุนรายปีเมื่อเช่ารถ ($AW_2$) = <span class="answer-highlight">230,000.00 บาท/ปี</span><br>
+    🏆 <strong>การตัดสินใจ:</strong> <strong>ควรใช้รถเดิมต่อไป ไม่ควรขายไปเช่ารถ</strong> เพราะประหยัดค่าใช้จ่ายได้มากกว่าถึงปีละ 40,226.80 บาท
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="replacement" id="p25">
+            <div class="problem-header" onclick="toggleSolution('p25')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 25</span>
+                    <span class="badge badge-primary">REPLACEMENT</span>
+                    <span class="problem-title">การวิเคราะห์การทดแทน: เปรียบเทียบข้อเสนอซื้อคืนของบริษัท X และ Y</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">ทดแทน.pdf (หน้า 2-4 Ex 11.2) & ตอนที่ 2 นศ. (หน้า 13-14)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> ทรัพย์สินเดิมใช้มา 7 ปี เหลืออายุ 5 ปี ค่าใช้จ่ายปีละ 30,000 บาท ซาก 5,000 บาท มีบริษัทเสนอขายทรัพย์สินใหม่ 2 เจ้า (MARR = 18%, อายุ 5 ปีเท่ากัน):<br>- บริษัท X: ราคา 100,000 บาท รับซื้อของเดิม 35,000 บาท ค่าใช้จ่ายปีละ 15,000 บาท ซาก 10,000 บาท<br>- บริษัท Y: ราคา 150,000 บาท รับซื้อของเดิม 25,000 บาท ค่าใช้จ่ายปีละ 8,000 บาท ซาก 50,000 บาท<br>จงพิจารณาเลือกทางเลือกที่ดีที่สุดด้วยวิธีกระแสเงินสด
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p25" onclick="toggleSolution('p25')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p25">
+                    
+<div class="step-block">
+    <div class="step-title">ข้อมูลแฟกเตอร์ที่ $i = 18\%, n = 5$:</div>
+    <p>$(A/P, 18\%, 5) = 0.31978$, $(A/F, 18\%, 5) = 0.13978$</p>
+</div>
+<div class="step-block">
+    <div class="step-title">1) ทรัพย์สินเดิม (Defender):</div>
+    $$AW_{\text{เดิม}} = -30,000 + 5,000(A/F, 18\%, 5) = -30,000 + 5,000(0.13978) = -29,301.10 \text{ บาท/ปี}$$
+</div>
+<div class="step-block">
+    <div class="step-title">2) ทรัพย์สินใหม่ บริษัท X (เงินจ่ายลงทุนสุทธิ $100k - 35k = 65,000$ บาท):</div>
+    $$AW_X = -65,000(A/P, 18\%, 5) - 15,000 + 10,000(A/F, 18\%, 5)$$
+    $$= -65,000(0.31978) - 15,000 + 10,000(0.13978) = -20,785.70 - 15,000 + 1,397.80 = -34,387.90 \text{ บาท/ปี}$$
+</div>
+<div class="step-block">
+    <div class="step-title">3) ทรัพย์สินใหม่ บริษัท Y (เงินจ่ายลงทุนสุทธิ $150k - 25k = 125,000$ บาท):</div>
+    $$AW_Y = -125,000(A/P, 18\%, 5) - 8,000 + 50,000(A/F, 18\%, 5)$$
+    $$= -125,000(0.31978) - 8,000 + 50,000(0.13978) = -39,972.50 - 8,000 + 6,989.00 = -40,983.50 \text{ บาท/ปี}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    - ทรัพย์สินเดิม = <span class="answer-highlight">-29,301.10 บาท/ปี</span> (ต้นทุนต่ำที่สุด)<br>
+    - บริษัท X = -34,387.90 บาท/ปี | บริษัท Y = -40,983.50 บาท/ปี<br>
+    🏆 <strong>การตัดสินใจ:</strong> <strong>ควรใช้ทรัพย์สินเดิมต่อไป</strong> ยังไม่ควรซื้อใหม่จากทั้งบริษัท X และ Y
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="tax" id="p26">
+            <div class="problem-header" onclick="toggleSolution('p26')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 26</span>
+                    <span class="badge badge-primary">TAX</span>
+                    <span class="problem-title">ค่าเสื่อมราคาและภาษีเงินได้: การคำนวณภาษีและกระแสเงินสดหลังหักภาษี (CFAT)</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">ภาษี.pdf (หน้า 1-2 EX 1)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> บริษัทแห่งหนึ่งมีรายได้ 40,000,000 บาท มีรายจ่ายค่าผลิตและจัดเก็บสินค้า 4,000,000 บาท ค่าจ้างและเงินเดือน 2,000,000 บาท ดอกเบี้ยเงินกู้ระยะยาว 2,800,000 บาท และมีค่าเสื่อมราคา 2,400,000 บาท จงหาภาษีเงินได้ที่บริษัทต้องจ่ายในปีนี้ และกำไรหลังหักภาษีเงินได้ เมื่ออัตราภาษีเงินได้นิติบุคคลอยู่ที่ 30% พร้อมหากระแสเงินสดหลังหักภาษี (CFAT)
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p26" onclick="toggleSolution('p26')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p26">
+                    
+<div class="step-block">
+    <div class="step-title">ขั้นตอนการคำนวณโครงสร้างงบการเงิน</div>
+    <table style="width:100%; border-collapse:collapse; margin-top:0.5rem; font-size:0.9rem;">
+        <tr><td style="padding:4px;">1. รายรับทั้งหมด (Gross Revenue, R)</td><td style="text-align:right; font-weight:600;">40,000,000 บาท</td></tr>
+        <tr><td style="padding:4px;">2. หัก: ต้นทุนดำเนินงาน ($4.0M + 2.0M + 2.8M$)</td><td style="text-align:right; color:#dc2626;">-8,800,000 บาท</td></tr>
+        <tr style="border-top:1px solid #ccc;"><td style="padding:4px;"><strong>3. รายได้สุทธิก่อนค่าเสื่อมและภาษี (Net Operating Income)</strong></td><td style="text-align:right; font-weight:600;">31,200,000 บาท</td></tr>
+        <tr><td style="padding:4px;">4. หัก: ค่าเสื่อมราคา (Depreciation, D)</td><td style="text-align:right; color:#dc2626;">-2,400,000 บาท</td></tr>
+        <tr style="border-top:1px solid #ccc;"><td style="padding:4px;"><strong>5. รายได้ที่ต้องเสียภาษี (Taxable Income, TI)</strong></td><td style="text-align:right; font-weight:600; color:#1e40af;">28,800,000 บาท</td></tr>
+        <tr><td style="padding:4px;">6. ภาษีเงินได้นิติบุคคล 30% ($28,800,000 \times 30\%$)</td><td style="text-align:right; color:#dc2626; font-weight:600;">8,640,000 บาท</td></tr>
+        <tr style="border-top:2px solid #1e40af;"><td style="padding:4px;"><strong>7. กำไรสุทธิหลังหักภาษี (Net Profit After Tax)</strong></td><td style="text-align:right; font-weight:700; color:#059669;">20,160,000 บาท</td></tr>
+        <tr><td style="padding:4px;">8. บวกกลับ: ค่าเสื่อมราคา (Non-Cash Expense)</td><td style="text-align:right; color:#059669;">+2,400,000 บาท</td></tr>
+        <tr style="border-top:1px solid #059669;"><td style="padding:4px;"><strong>9. กระแสเงินสดหลังหักภาษี (CFAT)</strong></td><td style="text-align:right; font-weight:700; color:#059669;">22,560,000 บาท</td></tr>
+    </table>
+</div>
+<div class="pitfall-box">
+    ⚠️ <strong>จุดสังเกตในสไลด์ต้นฉบับ (Typo Alert):</strong> ในสไลด์หน้า 2 ของไฟล์ภาษี.pdf บรรทัดภาษีเงินได้เขียนว่า "864,000 บาท" ซึ่งตกเลขศูนย์ไปหนึ่งตัว (ที่ถูกต้องคือ $28.8M \times 30\% = 8,640,000$ บาท) แต่บรรทัดกำไรหลังหักภาษีของอาจารย์เขียนว่า "20,160,000 บาท" ซึ่งคำนวณจาก $28,800,000 - 8,640,000$ ได้ถูกต้องสมบูรณ์!
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    - ภาษีเงินได้ที่ต้องจ่าย = <span class="answer-highlight">8,640,000 บาท</span><br>
+    - กำไรหลังหักภาษี = <span class="answer-highlight">20,160,000 บาท</span><br>
+    - กระแสเงินสดหลังหักภาษี (CFAT) = <span class="answer-highlight">22,560,000 บาท</span>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-card" data-category="decision" id="p27">
+            <div class="problem-header" onclick="toggleSolution('p27')">
+                <div class="problem-title-area">
+                    <span class="problem-num">ข้อ 27</span>
+                    <span class="badge badge-primary">DECISION</span>
+                    <span class="problem-title">การตัดสินใจและความเสี่ยง: ค่าคาดหมาย (EMV) & แผนภาพต้นไม้การตัดสินใจ</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">คาดหมาย.pdf (หน้า 1) & ตอนที่ 2 นศ. (หน้า 17-18 EX 14.1)</div>
+            </div>
+            <div class="problem-body">
+                <div class="problem-question">
+                    <strong>โจทย์:</strong> ตอนที่ 1) พิจารณาซื้อกิจการอู่ซ่อมเรือ มีเกณฑ์กำไร/ขาดทุนในปีหน้าดังนี้: ขาดทุน 200,000 บาท (prob 0.2), เท่าทุน 0 บาท (prob 0.3), กำไร 400,000 บาท (prob 0.3), กำไร 600,000 บาท (prob 0.2) จงหาค่าคาดหมายของกำไร<br>ตอนที่ 2) จากแผนภาพต้นไม้การตัดสินใจ EX 14.1 มีทางเลือก D1 คือ 'Market' หรือ 'Sell': หากเลือก 'Market' จะเจอสภาวะ High (prob 0.2, ให้ผลคาดหมายที่จุด D2 สูงสุด = $14M) หรือ Low (prob 0.8, ให้ผลคาดหมายที่จุด D3 สูงสุด = $4.2M) แต่ถ้าเลือก 'Sell' จะขายได้เงิน $9.0M แน่นอน ทางเลือกใดดีที่สุด?
+                </div>
+                <div>
+                    <button class="solution-toggle-btn" id="btn-p27" onclick="toggleSolution('p27')">
+                        👁️ ดูเฉลยและวิธีทำละเอียด
+                    </button>
+                </div>
+                <div class="solution-content" id="sol-p27">
+                    
+<div class="step-block">
+    <div class="step-title">ตอนที่ 1: คำนวณมูลค่าคาดหมาย (EMV) ของกิจการอู่ซ่อมเรือ</div>
+    $$E[X] = \sum X_i \cdot P(X_i)$$
+    $$= [-200,000 \times 0.2] + [0 \times 0.3] + [400,000 \times 0.3] + [600,000 \times 0.2]$$
+    $$= -40,000 + 0 + 120,000 + 120,000 = +200,000 \text{ บาท}$$
+    <p>ค่าคาดหมายกำไรเป็นบวก 200,000 บาท แสดงว่าในทางสถิติการลงทุนนี้ให้ผลตอบแทนเป็นบวก</p>
+</div>
+<div class="step-block">
+    <div class="step-title">ตอนที่ 2: วิเคราะห์ Decision Tree (Rollback Procedure) ที่จุดตัดสินใจ D1</div>
+    <p>1) หากเลือกกิ่ง <strong>"Market"</strong>: จะผ่าน Chance Node ที่มีผลลัพธ์ 2 ทาง:</p>
+    <ul style="padding-left:1.2rem;">
+        <li>High Market ($P = 0.2$): ได้รับค่าคาดหมายสูงสุดจาก D2 $= 14.0 \text{ ล้านเหรียญ}$</li>
+        <li>Low Market ($P = 0.8$): ได้รับค่าคาดหมายสูงสุดจาก D3 $= 4.2 \text{ ล้านเหรียญ}$</li>
+    </ul>
+    $$EMV(\text{Market}) = (0.2 \times 14.0) + (0.8 \times 4.2) = 2.80 + 3.36 = 6.16 \text{ ล้านเหรียญ}$$
+    
+    <p>2) หากเลือกกิ่ง <strong>"Sell"</strong>: ได้รับเงินแน่นอน $1.0 \times 9.0 = 9.00 \text{ ล้านเหรียญ}$</p>
+    
+    <p>3) ที่ Decision Node D1 (รูปสี่เหลี่ยม): เลือกค่าสูงสุดระหว่าง Market กับ Sell:</p>
+    $$Max(6.16, 9.00) = 9.00 \text{ ล้านเหรียญ (Sell)}$$
+</div>
+<div class="answer-box">
+    ✅ <strong>คำตอบ:</strong><br>
+    - ค่าคาดหมายกำไรอู่ซ่อมเรือ = <span class="answer-highlight">+200,000 บาท</span><br>
+    - สำหรับต้นไม้ตัดสินใจ ทางเลือกที่ดีที่สุดคือ <span class="answer-highlight">"Sell" (ขายสิทธิ์)</span> โดยได้รับค่าคาดหมาย $9.0 ล้านเหรียญ (สูงกว่าการทำตลาดเองที่ได้เพียง 6.16 ล้านเหรียญ)
+</div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+<!-- SECTION 5: EXAM TIPS & PITFALLS -->
+<section id="tips" class="card" style="border-top: 4px solid var(--danger);">
+    <div class="section-header">
+        <div>
+            <h2 class="section-title">🎯 5. สรุปกับดักข้อสอบและเทคนิคทำคะแนนเต็ม (Exam Master Tips)</h2>
+            <p class="section-desc">รวมจุดที่นักศึกษามักพลาดบ่อยที่สุดในห้องสอบ และข้อควรระวังสำคัญ</p>
+        </div>
+        <span class="badge badge-danger" style="font-size:0.86rem; padding:0.4rem 0.85rem;">ข้อควรระวังสูงสุด</span>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.25rem;">
+        <div style="background:#fff1f2; padding:1.35rem; border-radius:14px; border-left:4px solid var(--danger);">
+            <h4 style="color:#991b1b; font-family:'Kanit'; margin-bottom:0.45rem;">🚫 1. กับดักต้นทุนจม (Sunk Cost Trap)</h4>
+            <p style="font-size:0.9rem; color:#4c0519; line-height:1.7;">
+                ในโจทย์การทดแทนทรัพย์สิน (Replacement) ราคาที่ซื้อเครื่องจักรเดิมมาเมื่อหลายปีก่อน และค่าเสื่อมราคาสะสมทางบัญชี <strong>ห้ามนำมาคิดเด็ดขาด!</strong> ต้นทุนที่แท้จริงของทรัพย์สินเดิมคือ "ราคาตลาดปัจจุบันที่ขายได้ทันที" (Market / Trade-in Value) เท่านั้น
+            </p>
+        </div>
+
+        <div style="background:#fffbeb; padding:1.35rem; border-radius:14px; border-left:4px solid var(--accent);">
+            <h4 style="color:#92400e; font-family:'Kanit'; margin-bottom:0.45rem;">🚫 2. กับดักการเลือกโครงการด้วย IRR สูงสุด</h4>
+            <p style="font-size:0.9rem; color:#78350f; line-height:1.7;">
+                สำหรับโครงการที่เลือกได้เพียงทางเลือกเดียว (Mutually Exclusive) <strong>ห้ามเลือกโครงการที่มี IRR สูงสุดตรงๆ เด็ดขาด!</strong> ต้องเรียงลำดับเงินลงทุนและทำ Incremental Analysis ($\Delta$IRR) เสมอ เพราะโครงการขนาดใหญ่กว่าอาจสร้างมูลค่าความมั่งคั่ง (NPW) สูงกว่าแม้ IRR เฉลี่ยจะต่ำกว่า
+            </p>
+        </div>
+
+        <div style="background:#eff6ff; padding:1.35rem; border-radius:14px; border-left:4px solid var(--primary-light);">
+            <h4 style="color:#1e40af; font-family:'Kanit'; margin-bottom:0.45rem;">🚫 3. ครน. (LCM) ในวิธี PW vs วิธี AW</h4>
+            <p style="font-size:0.9rem; color:#1e3a8a; line-height:1.7;">
+                หากเปรียบเทียบโครงการที่มีอายุไม่เท่ากันด้วย <strong>Present Worth (PW)</strong> <em>ต้องหา ครน. (LCM) ของอายุขัยก่อนเสมอ</em> แต่ถ้าเปรียบเทียบด้วย <strong>Annual Worth (AW)</strong> <em>ไม่ต้องหา ครน.</em> สามารถคิด AW จากอายุของแต่ละโครงการได้ทันที
+            </p>
+        </div>
+
+        <div style="background:#f0fdf4; padding:1.35rem; border-radius:14px; border-left:4px solid var(--success);">
+            <h4 style="color:#166534; font-family:'Kanit'; margin-bottom:0.45rem;">🚫 4. การบวกกลับค่าเสื่อมราคาใน CFAT</h4>
+            <p style="font-size:0.9rem; color:#14532d; line-height:1.7;">
+                ค่าเสื่อมราคาเป็นค่าใช้จ่ายที่ไม่ใช่เงินสด (Non-cash expense) ใช้เพื่อหักลดหย่อนภาษีเท่านั้น เมื่อคำนวณหากระแสเงินสดสุทธิหลังหักภาษี (CFAT) <strong>ต้องบวกค่าเสื่อมราคากลับเข้าไปในกำไรสุทธิหลังหักภาษีเสมอ</strong> ($CFAT = NPAT + D$)
+            </p>
+        </div>
+    </div>
+</section>
+
+    </main>
+</div>
+
+<footer>
+    <div style="max-width:900px; margin:0 auto;">
+        <h3 style="font-family:'Kanit'; color:#FFFFFF; margin-bottom:0.5rem; font-size:1.25rem;">การวิเคราะห์ทางเศรษฐศาสตร์วิศวกรรม (Engineering Economic Analysis)</h3>
+        <p style="font-size:0.9rem; margin-bottom:1.2rem; opacity:0.85;">คู่มือสรุปเนื้อหาบทเรียน คลังสูตร เครื่องคำนวณ และเฉลยแบบฝึกหัด จัดทำเพื่อการศึกษาและทบทวนความรู้ทางวิศวกรรม</p>
+        <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; font-size:0.85rem; margin-bottom:1.5rem; color:#CBD5E1;">
+            <span>📁 เอกสารอ้างอิง: 9 ไฟล์</span>
+            <span>📖 ครอบคลุม: 10 บทเรียน</span>
+            <span>📝 เฉลยละเอียด: 27 ข้อ</span>
+            <span>⚡ คำนวณอัตโนมัติ & MathJax</span>
+        </div>
+        <p style="font-size:0.8rem; color:#64748B;">© 2026 Engineering Economics Review Project. Executive Study Edition.</p>
+    </div>
+</footer>
+
+<button class="back-to-top" id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="กลับขึ้นด้านบน">↑</button>
+<div class="toast-notice" id="toastNotice"></div>
+
+<!-- Interactive Scripts -->
+<script>
+let activeCategory = 'all';
+let completedProblems = new Set();
+const STORAGE_KEYS = {
+    theme: 'eea_theme_v2',
+    fontScale: 'eea_font_scale_v2',
+    done: 'eea_completed_problems_v2'
+};
+
+function showToast(msg) {
+    const toast = document.getElementById('toastNotice');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+// Theme & Font Size Controls
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const btn = document.getElementById('themeToggleBtn');
+    if (btn) btn.textContent = theme === 'dark' ? '☀️ โหมดสว่าง' : '🌙 โหมดมืด';
+    try { localStorage.setItem(STORAGE_KEYS.theme, theme); } catch (e) {}
+}
+
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+function adjustFontSize(delta) {
+    let current = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--font-scale')) || 1;
+    let next = Math.min(1.24, Math.max(0.86, +(current + delta).toFixed(2)));
+    document.documentElement.style.setProperty('--font-scale', next);
+    try { localStorage.setItem(STORAGE_KEYS.fontScale, next); } catch (e) {}
+    showToast('ขนาดตัวอักษร ' + Math.round(next * 100) + '%');
+}
+
+// 1. Enhanced Calculator Engine (shows both factor AND Baht value + click-to-copy)
+function formatBaht(val) {
+    return val.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' บาท';
+}
+
+function calculateFactors() {
+    const i_pct = parseFloat(document.getElementById('calc-i').value) || 8;
+    const n = parseInt(document.getElementById('calc-n').value) || 10;
+    const baseVal = parseFloat(document.getElementById('calc-val').value) || 10000;
+    const i = i_pct / 100;
+
+    const fp = Math.pow(1 + i, n);
+    const pf = 1 / fp;
+    const fa = (fp - 1) / i;
+    const af = i / (fp - 1);
+    const pa = (fp - 1) / (i * fp);
+    const ap = (i * fp) / (fp - 1);
+    const pg = (1 / i) * (pa - (n * pf));
+    const ag = (1 / i) - (n / (fp - 1));
+
+    const results = [
+        ['res-fp', fp], ['res-pf', pf], ['res-pa', pa], ['res-ap', ap],
+        ['res-fa', fa], ['res-af', af], ['res-pg', pg], ['res-ag', ag]
+    ];
+
+    results.forEach(([id, factor]) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.innerText = factor.toFixed(4);
+        const parent = el.closest('.calc-res-item');
+        if (parent) {
+            let moneyEl = parent.querySelector('.calc-res-money');
+            if (!moneyEl) {
+                moneyEl = document.createElement('div');
+                moneyEl.className = 'calc-res-money';
+                parent.appendChild(moneyEl);
+                parent.title = 'คลิกเพื่อคัดลอกค่าแฟกเตอร์';
+                parent.addEventListener('click', () => {
+                    const valText = el.innerText;
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(valText);
+                        showToast('คัดลอกค่าแฟกเตอร์ ' + valText + ' แล้ว');
+                    }
+                });
+            }
+            moneyEl.textContent = '≈ ' + formatBaht(baseVal * factor);
+        }
+    });
+}
+
+function calculateEffective() {
+    const r_pct = parseFloat(document.getElementById('calc-nom-r').value) || 6;
+    const m_val = document.getElementById('calc-comp-m').value;
+    const r = r_pct / 100;
+    let ie = 0;
+
+    if (m_val === 'cont') {
+        ie = Math.exp(r) - 1;
+    } else {
+        const m = parseFloat(m_val);
+        ie = Math.pow(1 + (r / m), m) - 1;
+    }
+
+    document.getElementById('res-eff-rate').innerText = (ie * 100).toFixed(4) + '%';
+}
+
+// 2. Accordion Toggles
+function toggleSolution(id) {
+    const solEl = document.getElementById('sol-' + id);
+    const btnEl = document.getElementById('btn-' + id);
+    const cardEl = document.getElementById(id);
+    if (!solEl) return;
+
+    if (solEl.classList.contains('active')) {
+        solEl.classList.remove('active');
+        if (cardEl) cardEl.classList.remove('is-open');
+        if (btnEl) btnEl.innerHTML = '👁️ ดูเฉลยและวิธีทำละเอียด';
+    } else {
+        solEl.classList.add('active');
+        if (cardEl) cardEl.classList.add('is-open');
+        if (btnEl) btnEl.innerHTML = '🔼 ซ่อนเฉลย';
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([solEl]);
+        }
+    }
+}
+
+function toggleAllSolutions(show) {
+    const solutions = document.querySelectorAll('.solution-content');
+    const buttons = document.querySelectorAll('.solution-toggle-btn');
+    const cards = document.querySelectorAll('.problem-card');
+    solutions.forEach(sol => sol.classList.toggle('active', show));
+    cards.forEach(card => card.classList.toggle('is-open', show));
+    buttons.forEach(btn => {
+        if (btn.id.startsWith('btn-')) {
+            btn.innerHTML = show ? '🔼 ซ่อนเฉลย' : '👁️ ดูเฉลยและวิธีทำละเอียด';
+        }
+    });
+    if (show && window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise();
+    }
+}
+
+// 3. Unified Category Filter + Live Search
+function applyProblemFilters() {
+    const input = document.getElementById('problemSearchInput');
+    const q = input ? input.value.toLowerCase().trim() : '';
+    const cards = document.querySelectorAll('.problem-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        const itemCat = card.getAttribute('data-category');
+        const matchesCat = (activeCategory === 'all') ||
+                           (activeCategory === 'done' && card.classList.contains('completed')) ||
+                           (activeCategory === 'todo' && !card.classList.contains('completed')) ||
+                           (itemCat === activeCategory);
+        const matchesQuery = !q || card.innerText.toLowerCase().includes(q);
+        const show = matchesCat && matchesQuery;
+        card.style.display = show ? 'block' : 'none';
+        if (show) visibleCount++;
+    });
+
+    const countEl = document.getElementById('problemResultCount');
+    if (countEl) countEl.textContent = 'แสดง ' + visibleCount + ' จาก ' + cards.length + ' ข้อ';
+    const emptyEl = document.getElementById('problemsEmptyState');
+    if (emptyEl) emptyEl.style.display = visibleCount === 0 ? 'block' : 'none';
+}
+
+function filterCategory(cat, btn) {
+    activeCategory = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    applyProblemFilters();
+}
+
+function searchProblems() {
+    applyProblemFilters();
+}
+
+// 4. Study Progress Tracking (localStorage)
+function loadCompletedProblems() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEYS.done) || '[]');
+        completedProblems = new Set(saved);
+    } catch (e) {
+        completedProblems = new Set();
+    }
+}
+
+function saveCompletedProblems() {
+    try {
+        localStorage.setItem(STORAGE_KEYS.done, JSON.stringify(Array.from(completedProblems)));
+    } catch (e) {}
+}
+
+function updateProgressUI() {
+    const total = document.querySelectorAll('.problem-card').length || 27;
+    const doneCount = completedProblems.size;
+    const pct = Math.round((doneCount / total) * 100);
+
+    const sideText = document.getElementById('sidebarProgressText');
+    const sideBar = document.getElementById('sidebarProgressBar');
+    const topText = document.getElementById('problemsProgressText');
+    if (sideText) sideText.textContent = doneCount + ' / ' + total + ' (' + pct + '%)';
+    if (sideBar) sideBar.style.width = pct + '%';
+    if (topText) topText.textContent = 'ทำแล้ว ' + doneCount + ' / ' + total + ' ข้อ (' + pct + '%)';
+}
+
+function enhanceProblemsUI() {
+    const problemsSection = document.getElementById('problems');
+    const filterControls = problemsSection ? problemsSection.querySelector('.filter-controls') : null;
+    if (filterControls && !filterControls.parentElement.classList.contains('problems-toolbar')) {
+        const toolbar = document.createElement('div');
+        toolbar.className = 'problems-toolbar';
+        filterControls.parentNode.insertBefore(toolbar, filterControls);
+        toolbar.appendChild(filterControls);
+
+        const statusBar = document.createElement('div');
+        statusBar.className = 'problems-status-bar';
+        statusBar.innerHTML = '<span id="problemResultCount">แสดง 27 จาก 27 ข้อ</span><span id="problemsProgressText" style="font-weight:600; color:var(--secondary);">ทำแล้ว 0 / 27 ข้อ (0%)</span>';
+        toolbar.insertAdjacentElement('afterend', statusBar);
+    }
+
+    const listEl = document.getElementById('problemsList');
+    if (listEl && !document.getElementById('problemsEmptyState')) {
+        const empty = document.createElement('div');
+        empty.id = 'problemsEmptyState';
+        empty.className = 'empty-state';
+        empty.innerHTML = '<div style="font-size:1.8rem; margin-bottom:0.4rem;">🔍</div><strong>ไม่พบโจทย์ที่ตรงกับคำค้นหา</strong><p style="font-size:0.88rem; margin-top:0.25rem;">ลองเปลี่ยนคำค้นหาหรือเลือกหมวดหมู่ "ทั้งหมด"</p>';
+        listEl.appendChild(empty);
+    }
+
+    document.querySelectorAll('.problem-card').forEach(card => {
+        const id = card.id;
+        const header = card.querySelector('.problem-header');
+        if (!header) return;
+
+        const sourceEl = header.children[1];
+        const rightWrap = document.createElement('div');
+        rightWrap.className = 'problem-header-right';
+        if (sourceEl) rightWrap.appendChild(sourceEl);
+
+        const doneBtn = document.createElement('button');
+        doneBtn.type = 'button';
+        doneBtn.className = 'done-check-btn';
+        const isDone = completedProblems.has(id);
+        if (isDone) {
+            card.classList.add('completed');
+            doneBtn.classList.add('is-done');
+            doneBtn.textContent = '✓ ทำแล้ว';
+        } else {
+            doneBtn.textContent = '○ ทำเครื่องหมาย';
+        }
+        doneBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (completedProblems.has(id)) {
+                completedProblems.delete(id);
+                card.classList.remove('completed');
+                doneBtn.classList.remove('is-done');
+                doneBtn.textContent = '○ ทำเครื่องหมาย';
+            } else {
+                completedProblems.add(id);
+                card.classList.add('completed');
+                doneBtn.classList.add('is-done');
+                doneBtn.textContent = '✓ ทำแล้ว';
+            }
+            saveCompletedProblems();
+            updateProgressUI();
+        });
+        rightWrap.appendChild(doneBtn);
+
+        const chev = document.createElement('span');
+        chev.className = 'chevron-icon';
+        chev.textContent = '▾';
+        rightWrap.appendChild(chev);
+
+        header.appendChild(rightWrap);
+    });
+
+    updateProgressUI();
+    applyProblemFilters();
+}
+
+// 5. Auto-build Chapter Quick-Jump Pills & Sidebar Sub-TOC
+function buildChapterNavigation() {
+    const theorySec = document.getElementById('theory');
+    if (!theorySec) return;
+    const chapterCards = theorySec.querySelectorAll(':scope > .card');
+    const subToc = document.getElementById('chapterSubToc');
+
+    const pillsBar = document.createElement('div');
+    pillsBar.className = 'chapter-pills-bar';
+
+    chapterCards.forEach((card, idx) => {
+        const chapId = 'chapter-' + (idx + 1);
+        card.id = chapId;
+        const h3 = card.querySelector('h3');
+        const fullTitle = h3 ? h3.textContent.trim() : ('บทที่ ' + (idx + 1));
+        const shortLabel = fullTitle.split('(')[0].trim();
+
+        const pill = document.createElement('a');
+        pill.href = '#' + chapId;
+        pill.className = 'chapter-pill';
+        pill.textContent = shortLabel;
+        pillsBar.appendChild(pill);
+
+        if (subToc) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = '#' + chapId;
+            a.className = 'toc-sublink';
+            a.textContent = shortLabel;
+            a.title = fullTitle;
+            li.appendChild(a);
+            subToc.appendChild(li);
+        }
+    });
+
+    const header = theorySec.querySelector('.section-header');
+    if (header) header.insertAdjacentElement('afterend', pillsBar);
+}
+
+// 6. Scroll Progress, Back-to-Top, and Scroll-Spy
+function initScrollBehaviors() {
+    const progressBar = document.getElementById('readingProgress');
+    const backBtn = document.getElementById('backToTopBtn');
+    const sections = ['files', 'theory', 'calculator', 'problems', 'tips']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+    function onScroll() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+        if (progressBar) progressBar.style.width = pct + '%';
+        if (backBtn) backBtn.classList.toggle('visible', scrollTop > 420);
+
+        let activeId = sections[0] ? sections[0].id : '';
+        for (const sec of sections) {
+            if (sec.getBoundingClientRect().top <= 140) {
+                activeId = sec.id;
+            }
+        }
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('data-section') === activeId);
+        });
+        document.querySelectorAll('#topNavMenu .nav-link').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + activeId);
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+}
+
+// Initialize on Load
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        const savedTheme = localStorage.getItem(STORAGE_KEYS.theme);
+        if (savedTheme) applyTheme(savedTheme);
+        const savedScale = localStorage.getItem(STORAGE_KEYS.fontScale);
+        if (savedScale) document.documentElement.style.setProperty('--font-scale', savedScale);
+    } catch (e) {}
+
+    loadCompletedProblems();
+    calculateFactors();
+    calculateEffective();
+    buildChapterNavigation();
+    enhanceProblemsUI();
+    initScrollBehaviors();
+});
+</script>
+
+</body>
+</html>
